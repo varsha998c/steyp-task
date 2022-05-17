@@ -144,6 +144,10 @@ const TopContainer = styled.div`
         margin-left: 20px;
         font-family: "gordita_medium";
         font-size: 14px;
+        color: #333;
+        &:hover {
+            color: #5dc66a;
+        }
     }
 `;
 const ImgContainer = styled.div`
@@ -163,10 +167,15 @@ const One = styled.div`
     align-items: center;
     justify-content: flex-start;
     cursor: pointer;
+    padding: 10px 0px;
     h4 {
         margin-left: 20px;
         font-family: "gordita_medium";
         font-size: 14px;
+        color: #333;
+        &:hover {
+            color: #5dc66a;
+        }
     }
 `;
 const Two = styled.div`
@@ -174,10 +183,15 @@ const Two = styled.div`
     align-items: center;
     justify-content: flex-start;
     cursor: pointer;
+    padding: 10px 0px;
     h4 {
         margin-left: 20px;
         font-family: "gordita_medium";
         font-size: 14px;
+        color: #333;
+        &:hover {
+            color: #5dc66a;
+        }
     }
 `;
 const Three = styled.div`
@@ -185,10 +199,15 @@ const Three = styled.div`
     align-items: center;
     justify-content: flex-start;
     cursor: pointer;
+    padding: 10px 0px;
     h4 {
         margin-left: 20px;
         font-family: "gordita_medium";
         font-size: 14px;
+        color: #333;
+        &:hover {
+            color: #5dc66a;
+        }
     }
 `;
 const BottomContainer = styled.div`
@@ -228,10 +247,13 @@ const ButtonDiv = styled.div`
     min-width: 60px;
     justify-content: center;
     cursor: pointer;
+    padding: 13px;
     h4 {
         color: #fff;
         margin-right: 10px;
         text-align: center;
+        font-size: 14px;
+        font-family: "gordita_medium";
     }
 `;
 const Arrow = styled.div`

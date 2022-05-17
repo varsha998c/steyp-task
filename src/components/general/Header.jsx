@@ -1,64 +1,68 @@
 import React from "react";
 import styled from "styled-components";
 import Avatar from "react-avatar";
+import { Outlet } from "react-router-dom";
 
 function Header() {
     return (
-        <Container>
-            <Wrapper>
-                <Left>
-                    <LogoConatiner>
-                        <Logo
-                            src={
-                                require("../../assets/images/steyp-logo.svg")
-                                    .default
-                            }
-                            alt="logo"
-                        />
-                    </LogoConatiner>
-                </Left>
-                <Right>
-                    <CoinDiv>
-                        <CoinContainer>
-                            <CoinImg>
-                                <Img
-                                    src={
-                                        require("../../assets/images/Coin-Header.svg")
-                                            .default
-                                    }
-                                    alt="coins"
-                                />
-                            </CoinImg>
-                            <h5>9 coins</h5>
-                            <PlusContainer>
-                                <Img
-                                    src={require("../../assets/images/add.png")}
-                                    alt="plus"
-                                />
-                            </PlusContainer>
-                        </CoinContainer>
-                        <MsgContainer>
-                            <Img
-                                src="https://s3.ap-south-1.amazonaws.com/talrop.com-react-assets-bucket/assets/images/messages.svg"
-                                alt="message"
+        <>
+            <Container>
+                <Wrapper>
+                    <Left>
+                        <LogoConatiner>
+                            <Logo
+                                src={
+                                    require("../../assets/images/steyp-logo.svg")
+                                        .default
+                                }
+                                alt="logo"
                             />
-                        </MsgContainer>
-                    </CoinDiv>
-                    <ProfileDiv>
-                        <Profile>
-                            <Avatar name="Varsha" size="60" />
-                        </Profile>
-                        <h4>Varsha</h4>
-                        <DropDown>
-                            <Img
-                                src="https://s3.ap-south-1.amazonaws.com/talrop.com-react-assets-bucket/assets/images/polygon.svg"
-                                alt="dropdown"
-                            />
-                        </DropDown>
-                    </ProfileDiv>
-                </Right>
-            </Wrapper>
-        </Container>
+                        </LogoConatiner>
+                    </Left>
+                    <Right>
+                        <CoinDiv>
+                            <CoinContainer>
+                                <CoinImg>
+                                    <Img
+                                        src={
+                                            require("../../assets/images/Coin-Header.svg")
+                                                .default
+                                        }
+                                        alt="coins"
+                                    />
+                                </CoinImg>
+                                <h5>9 coins</h5>
+                                <PlusContainer>
+                                    <Img
+                                        src={require("../../assets/images/add.png")}
+                                        alt="plus"
+                                    />
+                                </PlusContainer>
+                            </CoinContainer>
+                            <MsgContainer>
+                                <Img
+                                    src="https://s3.ap-south-1.amazonaws.com/talrop.com-react-assets-bucket/assets/images/messages.svg"
+                                    alt="message"
+                                />
+                            </MsgContainer>
+                        </CoinDiv>
+                        <ProfileDiv>
+                            <Profile>
+                                <Avatar name="Varsha" size="60" />
+                            </Profile>
+                            <h4>Varsha</h4>
+                            <DropDown>
+                                <Img
+                                    src="https://s3.ap-south-1.amazonaws.com/talrop.com-react-assets-bucket/assets/images/polygon.svg"
+                                    alt="dropdown"
+                                />
+                            </DropDown>
+                        </ProfileDiv>
+                    </Right>
+                </Wrapper>
+            </Container>
+            <Outlet />
+        </>
     );
 }
 

@@ -1,19 +1,17 @@
 import React from "react";
-import Header from "./Header";
-import styled from "styled-components";
-import SideBar from "../includes/SideBar";
-import Schooling from "../includes/Schooling";
-import Aaa from "../includes/Schooling";
-import Tech from "../includes/Tech";
 import Learning from "../includes/Learning";
+import styled from "styled-components";
+import Header from "../general/Header";
+import SideBar from "../includes/SideBar";
 
-function Main() {
+function LearningSection() {
     return (
         <>
+            <Header />
             <Container>
                 <Section className="wrapper">
                     <Right>
-                        <Tech />
+                        <Learning />
                     </Right>
                 </Section>
             </Container>
@@ -21,10 +19,8 @@ function Main() {
     );
 }
 
-export default Main;
-const Container = styled.div`
-    /* margin-top: 200px; */
-`;
+export default LearningSection;
+const Container = styled.div``;
 const Section = styled.div`
     display: flex;
     justify-content: space-between;
@@ -34,5 +30,5 @@ const Left = styled.div`
 `;
 const Right = styled.div`
     width: 100%;
-    /* margin-top: 100px; */
+    margin-top: 40px;
 `;

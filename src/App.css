@@ -13,7 +13,8 @@
   }
 }
 *{
- 
+    padding: 0;
+    margin: 0;
     vertical-align: baseline;
     background: 0 0;
     font-weight: 400;
