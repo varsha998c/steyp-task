@@ -2,8 +2,10 @@ import React from "react";
 import { Link, Route, Routes } from "react-router-dom";
 import styled from "styled-components";
 import Main from "../general/Main";
+import Assessments from "../screens/Assessments";
 import LearningSection from "../screens/LearningSection";
 import Practice from "../screens/Practice";
+import Workshop from "../screens/Workshop";
 const MenusContainer = () => {
     return (
         <Cover>
@@ -13,8 +15,8 @@ const MenusContainer = () => {
                     <Li to="/dashboard">Dashboard</Li>
                     <Li to="/">Learning</Li>
                     <Li to="/practice">Practices</Li>
-                    <Li to="dashboard/">Workshops</Li>
-                    <Li to="/">Assessments</Li>
+                    <Li to="/workshop">Workshops</Li>
+                    <Li to="/assessments">Assessments</Li>
                     <Li to="/">New Content</Li>
                     <Li to="/">Certification</Li>
                 </Ul>
@@ -23,6 +25,8 @@ const MenusContainer = () => {
                 <Route path="/" element={<LearningSection />} />
                 <Route path="dashboard" element={<Main />} />
                 <Route path="practice" element={<Practice />} />
+                <Route path="workshop" element={<Workshop />} />
+                <Route path="assessments" element={<Assessments />} />
             </Routes>
         </Cover>
     );
@@ -62,9 +66,10 @@ const Li = styled(Link)`
     }
 `;
 const Cover = styled.div`
-    margin-top: 98px;
+    margin-top: 80px;
     margin-left: 265px;
     width: 81%;
+    padding: 20px 0;
     h2 {
         text-transform: capitalize;
         font-family: gordita_medium;

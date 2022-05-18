@@ -1,45 +1,54 @@
 import React from "react";
 import styled from "styled-components";
 import { IoLayersOutline } from "react-icons/io5";
+import { AiOutlinePlayCircle } from "react-icons/ai";
 
-function Practice() {
+function Workshop() {
     return (
         <Container>
             <Left>
                 <TopContainer>
-                    <h3>Your Next Practice</h3>
+                    <h3>Your Next Workshop</h3>
                     <ImgeContainer>
                         <img
                             src="https://s3.ap-south-1.amazonaws.com/talrop.com-react-assets-bucket/assets/images/practices/assets/nextemptybg.svg"
                             alt="Image"
                         />
                     </ImgeContainer>
-                    <SubHeading>There are no practices active</SubHeading>
+                    <SubHeading>There are no workshops active</SubHeading>
                     <Description>
-                        Currently, you have no practices to attend. Please go to
-                        your next activity to unlock more practices.
+                        Currently, you have no workshops to attend. Please go to
+                        your next activity to unlock more workshops.
                     </Description>
                     <Button>Go to Learn dashboard</Button>
                 </TopContainer>
                 <BottomContainer>
-                    <h3>Upcoming Practices</h3>
+                    <h3>Upcoming Workshops</h3>
                     <Div>
                         <ImageContainer>
                             <img
-                                src="https://d3mbaugvr53zg5.cloudfront.net/media/learn/practices/practice/01_-_String_operations.jpg"
+                                src="https://d3mbaugvr53zg5.cloudfront.net/media/learn/workshop/workshop/caching_post_page.png"
                                 alt="Image"
                             />
                         </ImageContainer>
                         <ContentSection>
                             <Heading>
                                 <span>#1</span>
-                                <h4>String Operations</h4>
+                                <h4>Cashing Post Page </h4>
                             </Heading>
                             <Developer>
                                 <Icon>
                                     <IoLayersOutline />
+                                    <h6>Backend Developer</h6>
                                 </Icon>
-                                <h6>Backend Developer</h6>
+                                <Icon>
+                                    <AiOutlinePlayCircle />
+                                    <h6>1 Topic</h6>
+                                </Icon>
+                                <Icon>
+                                    <AiOutlinePlayCircle />
+                                    <h6>4 mins</h6>
+                                </Icon>
                             </Developer>
                         </ContentSection>
                     </Div>
@@ -49,64 +58,91 @@ function Practice() {
                 <ContentContainer>
                     <Header>
                         <Top>
-                            <h2>Attended Practices</h2>
+                            <h2>Completed Workshops</h2>
                             <ButtonDiv>View All</ButtonDiv>
                         </Top>
                         <Card>
                             <ImgContainer>
                                 <img
-                                    src="https://d3mbaugvr53zg5.cloudfront.net/media/learn/practices/practice/01_-_Create_Profile_Website_2tdILSb.jpg"
+                                    src="https://d3mbaugvr53zg5.cloudfront.net/media/learn/workshop/workshop/caching_post_page.png"
                                     alt="Image"
                                 />
                             </ImgContainer>
-                            <Mark>
-                                <img
-                                    src="https://s3.ap-south-1.amazonaws.com/talrop.com-react-assets-bucket/assets/images/star.svg"
-                                    alt=""
-                                />
-                                <span>10/10</span>
-                            </Mark>
+
                             <Right>
-                                <Heading className="one">#1</Heading>
-                                <Title>Create a Profile Website</Title>
+                                <Heading className="one">
+                                    #99<h6>Caching Post Page</h6>
+                                </Heading>
+                                <Developer className="one">
+                                    <Icon>
+                                        <IoLayersOutline />
+                                        <h6>UI Engineer</h6>
+                                    </Icon>
+                                    <Icon>
+                                        <AiOutlinePlayCircle />
+                                        <h6>1 Topic</h6>
+                                    </Icon>
+                                    <Icon>
+                                        <AiOutlinePlayCircle />
+                                        <h6>4 mins</h6>
+                                    </Icon>
+                                </Developer>
                             </Right>
                         </Card>
                         <Card>
                             <ImgContainer>
                                 <img
-                                    src="https://d3mbaugvr53zg5.cloudfront.net/media/learn/practices/practice/01_-_Create_Profile_Website_2tdILSb.jpg"
+                                    src="https://d3mbaugvr53zg5.cloudfront.net/media/learn/workshop/workshop/03_-_Wibbitz_Middle_section.jpg"
                                     alt="Image"
                                 />
                             </ImgContainer>
-                            <Mark>
-                                <img
-                                    src="https://s3.ap-south-1.amazonaws.com/talrop.com-react-assets-bucket/assets/images/star.svg"
-                                    alt=""
-                                />
-                                <span>10/10</span>
-                            </Mark>
+
                             <Right>
-                                <Heading className="one">#2</Heading>
-                                <Title>Create a Profile Website</Title>
+                                <Heading className="one">
+                                    #99<h6>Caching Post Page</h6>
+                                </Heading>
+                                <Developer className="one">
+                                    <Icon>
+                                        <IoLayersOutline />
+                                        <h6>Backend Developer</h6>
+                                    </Icon>
+                                    <Icon>
+                                        <AiOutlinePlayCircle />
+                                        <h6>1 Topic</h6>
+                                    </Icon>
+                                    <Icon>
+                                        <AiOutlinePlayCircle />
+                                        <h6>4 mins</h6>
+                                    </Icon>
+                                </Developer>
                             </Right>
                         </Card>
                         <Card>
                             <ImgContainer>
                                 <img
-                                    src="https://d3mbaugvr53zg5.cloudfront.net/media/learn/practices/practice/01_-_Create_Profile_Website_2tdILSb.jpg"
+                                    src="https://d3mbaugvr53zg5.cloudfront.net/media/learn/workshop/workshop/03_-_Wibbitz_Middle_section.jpg"
                                     alt="Image"
                                 />
                             </ImgContainer>
-                            <Mark>
-                                <img
-                                    src="https://s3.ap-south-1.amazonaws.com/talrop.com-react-assets-bucket/assets/images/star.svg"
-                                    alt=""
-                                />
-                                <span>10/10</span>
-                            </Mark>
+
                             <Right>
-                                <Heading className="one">#3</Heading>
-                                <Title>Create a Profile Website</Title>
+                                <Heading className="one">
+                                    #99<h6>Caching Post Page</h6>
+                                </Heading>
+                                <Developer className="one">
+                                    <Icon>
+                                        <IoLayersOutline />
+                                        <h6>Backend Developer</h6>
+                                    </Icon>
+                                    <Icon>
+                                        <AiOutlinePlayCircle />
+                                        <h6>1 Topic</h6>
+                                    </Icon>
+                                    <Icon>
+                                        <AiOutlinePlayCircle />
+                                        <h6>4 mins</h6>
+                                    </Icon>
+                                </Developer>
                             </Right>
                         </Card>
                     </Header>
@@ -116,13 +152,13 @@ function Practice() {
     );
 }
 
-export default Practice;
+export default Workshop;
 const Container = styled.div`
     display: flex;
     justify-content: space-between;
 `;
 const Left = styled.div`
-    width: 45%;
+    width: 41%;
     display: flex;
     flex-direction: column;
 `;
@@ -130,12 +166,12 @@ const TopContainer = styled.div`
     h3 {
         font-size: 20px;
         color: rgb(24, 72, 76);
-        margin-top: 30px;
+        margin-top: 50px;
         font-family: gordita_regular;
     }
 `;
 const ImgContainer = styled.div`
-    width: 150px;
+    width: 250px;
 
     img {
         display: block;
@@ -188,12 +224,22 @@ const Div = styled.div`
 `;
 const ContentSection = styled.div``;
 const Heading = styled.div`
-    font-family: gordita_medium;
-    font-size: 14px;
-    margin-bottom: 5px;
-    display: flex;
     &.one {
         color: rgb(65, 174, 118);
+        font-family: gordita_medium;
+        font-size: 18px;
+        width: 230px;
+        margin-bottom: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        h6 {
+            margin-left: 5px;
+            color: rgb(30, 78, 82);
+            border-left: 2px solid #000;
+            font-size: 16px;
+            padding-left: 4px;
+        }
     }
     span {
         color: rgb(65, 174, 118);
@@ -208,13 +254,13 @@ const Heading = styled.div`
     }
 `;
 const Right = styled.div`
-    width: 48%;
-    margin-left: 10px;
+    width: 56%;
+    margin-left: 20px;
 `;
 const ContentContainer = styled.div`
     background-color: rgb(250, 250, 250);
     padding: 30px 20px;
-    margin-top: 60px;
+    margin-top: 38px;
 `;
 const Header = styled.div``;
 const Top = styled.div`
@@ -264,8 +310,8 @@ const Title = styled.h4`
 `;
 const ImageContainer = styled.div`
     margin-right: 20px;
-    width: 40%;
-    min-width: 200px;
+    width: 30%;
+    min-width: 100px;
     border-radius: 5px;
     overflow: hidden;
     img {
@@ -274,18 +320,23 @@ const ImageContainer = styled.div`
     }
 `;
 const Developer = styled.div`
+    &.one {
+        display: flex;
+        align-items: center;
+        margin-top: 25px;
+    }
+`;
+const Icon = styled.div`
     display: flex;
     align-items: center;
-    margin-top: 25px;
+    justify-content: unset;
+    margin-right: 10px;
     h6 {
         color: rgb(168, 168, 168);
         font-family: gordita_regular;
         font-size: 13px;
+        margin-left: 5px;
     }
-`;
-const Icon = styled.div`
-    width: 15px;
-    margin-right: 10px;
 `;
 const ImgeContainer = styled.div`
     width: 280px;
