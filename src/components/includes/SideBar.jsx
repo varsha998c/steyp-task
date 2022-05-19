@@ -1,5 +1,8 @@
 import React from "react";
+import { Route, Routes, Link } from "react-router-dom";
 import styled from "styled-components";
+import Home from "../screens/Home";
+
 function SideBar() {
     return (
         <Section>
@@ -12,7 +15,7 @@ function SideBar() {
                                 alt="Image"
                             />
                         </ImgContainer>
-                        <h4>Dashboard</h4>
+                        <H4 to="/home">Dashboard</H4>
                     </TopContainer>
                     <MiddleContainer>
                         <One>
@@ -22,7 +25,7 @@ function SideBar() {
                                     alt="Image"
                                 />
                             </ImgContainer>
-                            <h4>Free Ground</h4>
+                            <H4 to="/">Free Ground</H4>
                         </One>
                         <Two>
                             <ImgContainer>
@@ -31,7 +34,7 @@ function SideBar() {
                                     alt="Image"
                                 />
                             </ImgContainer>
-                            <h4>Challeges</h4>
+                            <H4 to="/">Challeges</H4>
                         </Two>
                         <Three>
                             <ImgContainer>
@@ -40,7 +43,7 @@ function SideBar() {
                                     alt="Image"
                                 />
                             </ImgContainer>
-                            <h4>Chat with RM</h4>
+                            <H4 to="/s">Chat with RM</H4>
                         </Three>
                     </MiddleContainer>
                 </Content>
@@ -88,7 +91,9 @@ function SideBar() {
                         </Image>
                     </BottomContainer>
                     <ButtonDiv>
-                        <h4>Explore Talrop</h4>
+                        <H4 to="/" className="explore">
+                            Explore Talrop
+                        </H4>
                         <Arrow>
                             <img
                                 src="https://s3.ap-south-1.amazonaws.com/talrop.com-react-assets-bucket/assets/images/explore-white-arrow.svg"
@@ -97,6 +102,9 @@ function SideBar() {
                         </Arrow>
                     </ButtonDiv>
                 </Div>
+                <Routes>
+                    <Route path="/home" element={<Home />} />
+                </Routes>
             </Wrapper>
         </Section>
     );
@@ -248,12 +256,18 @@ const ButtonDiv = styled.div`
     justify-content: center;
     cursor: pointer;
     padding: 13px;
-    h4 {
+`;
+const H4 = styled(Link)`
+    margin-left: 20px;
+    font-family: "gordita_medium";
+    font-size: 14px;
+    color: #333;
+    &:hover {
+        color: #5dc66a;
+    }
+    &.explore {
         color: #fff;
-        margin-right: 10px;
-        text-align: center;
-        font-size: 14px;
-        font-family: "gordita_medium";
+        margin-right: 3px;
     }
 `;
 const Arrow = styled.div`

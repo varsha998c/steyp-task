@@ -224,6 +224,10 @@ const Div = styled.div`
 `;
 const ContentSection = styled.div``;
 const Heading = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
     &.one {
         color: rgb(65, 174, 118);
         font-family: gordita_medium;
@@ -233,6 +237,7 @@ const Heading = styled.div`
         display: flex;
         align-items: center;
         justify-content: flex-start;
+
         h6 {
             margin-left: 5px;
             color: rgb(30, 78, 82);
@@ -245,12 +250,12 @@ const Heading = styled.div`
         color: rgb(65, 174, 118);
         font-family: gordita_medium;
         margin-right: 5px;
-        border-right: 1px solid #000;
-        padding-right: 5px;
     }
     h4 {
         font-family: gordita_medium;
         font-size: 14px;
+        border-left: 3px solid #000;
+        padding-left: 4px;
     }
 `;
 const Right = styled.div`
@@ -320,6 +325,7 @@ const ImageContainer = styled.div`
     }
 `;
 const Developer = styled.div`
+    margin-top: 10px;
     &.one {
         display: flex;
         align-items: center;

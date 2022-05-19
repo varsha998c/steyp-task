@@ -246,7 +246,7 @@ const Item = styled.div`
     }
 `;
 const Left = styled.div`
-    width: 80px;
+    width: 84px;
     img {
         display: block;
         width: 100%;
@@ -271,7 +271,6 @@ const Paragraph = styled.span`
 const Stars = styled.div`
     display: flex;
     justify-content: space-between;
-    margin-top: 6px;
     width: 130px;
 `;
 const Star = styled.div``;

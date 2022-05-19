@@ -41,7 +41,7 @@ function Assessments() {
                 <ContentContainer>
                     <Header>
                         <Top>
-                            <h2>Attended Assessments</h2>
+                            <h3>Attended Assessments</h3>
                             <ButtonDiv>View All</ButtonDiv>
                         </Top>
                         <Card>
@@ -224,10 +224,11 @@ const Header = styled.div``;
 const Top = styled.div`
     display: flex;
     justify-content: space-between;
-    h2 {
+    h3 {
         color: rgb(30, 78, 82);
         font-size: 20px;
         font-family: gordita_regular;
+        margin-bottom: 15px;
     }
 `;
 const ButtonDiv = styled.div`

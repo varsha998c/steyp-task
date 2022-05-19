@@ -3,9 +3,12 @@ import { Link, Route, Routes } from "react-router-dom";
 import styled from "styled-components";
 import Main from "../general/Main";
 import Assessments from "../screens/Assessments";
+import Certification from "../screens/Certification";
 import LearningSection from "../screens/LearningSection";
+import NewContent from "../screens/NewContent";
 import Practice from "../screens/Practice";
 import Workshop from "../screens/Workshop";
+
 const MenusContainer = () => {
     return (
         <Cover>
@@ -17,8 +20,8 @@ const MenusContainer = () => {
                     <Li to="/practice">Practices</Li>
                     <Li to="/workshop">Workshops</Li>
                     <Li to="/assessments">Assessments</Li>
-                    <Li to="/">New Content</Li>
-                    <Li to="/">Certification</Li>
+                    <Li to="/new_content">New Content</Li>
+                    <Li to="/certificate">Certification</Li>
                 </Ul>
             </Div>
             <Routes>
@@ -27,6 +30,8 @@ const MenusContainer = () => {
                 <Route path="practice" element={<Practice />} />
                 <Route path="workshop" element={<Workshop />} />
                 <Route path="assessments" element={<Assessments />} />
+                <Route path="new_content" element={<NewContent />} />
+                <Route path="certificate" element={<Certification />} />
             </Routes>
         </Cover>
     );

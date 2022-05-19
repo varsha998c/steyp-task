@@ -1,11 +1,6 @@
 import React from "react";
-import Header from "./Header";
 import styled from "styled-components";
-import SideBar from "../includes/SideBar";
-import Schooling from "../includes/Schooling";
-import Aaa from "../includes/Schooling";
 import Tech from "../includes/Tech";
-import Learning from "../includes/Learning";
 
 function Main() {
     return (
