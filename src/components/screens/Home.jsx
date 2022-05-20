@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import Challeges from "./Challeges";
 import FreeGround from "./FreeGround";
 
 function Home({ setDash }) {
@@ -55,6 +56,7 @@ function Home({ setDash }) {
             </Container>
 
             <FreeGround />
+            <Challeges />
         </>
     );
 }
