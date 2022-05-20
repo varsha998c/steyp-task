@@ -1,56 +1,61 @@
 import React from "react";
 import styled from "styled-components";
+import FreeGround from "./FreeGround";
 
 function Home({ setDash }) {
     return (
-        <Container>
-            <Top>
-                <One>
-                    <span>Hi, </span>
-                    Varsha {""}
-                </One>
-                <Img>
-                    <img
-                        src="https://s3.ap-south-1.amazonaws.com/talrop.com-react-assets-bucket/assets/images/30-04-2022/decor.svg"
-                        alt="img"
-                    />
-                </Img>
-            </Top>
-            <Bottom>
-                <Div onClick={() => setDash((prev) => !prev)}>
-                    <h3>Subjects</h3>
-                    <Item>
-                        <Items>
-                            <Imgs>
-                                <img
-                                    src="https://d3mbaugvr53zg5.cloudfront.net/media/e-learning/photos/subject-images/1_6x8IJAf.svg"
-                                    alt="img"
-                                />
-                            </Imgs>
-                            <Round>
-                                <img
-                                    src="https://d3mbaugvr53zg5.cloudfront.net/media/e-learning/photos/subject-images/techschooling_qZi8bG4.svg"
-                                    alt="img"
-                                />
-                            </Round>
-                            <Heading>Tech Schooling</Heading>
-                            <Arrow>
-                                <img
-                                    src="https://d3mbaugvr53zg5.cloudfront.net/media/e-learning/photos/subject-images/greenarrow_KMnh8MC.svg"
-                                    alt="img"
-                                />
-                            </Arrow>
-                            <Dots>
-                                <img
-                                    src="https://d3mbaugvr53zg5.cloudfront.net/media/e-learning/photos/subject-images/1_znke34i.svg"
-                                    alt="img"
-                                />
-                            </Dots>
-                        </Items>
-                    </Item>
-                </Div>
-            </Bottom>
-        </Container>
+        <>
+            <Container>
+                <Top>
+                    <One>
+                        <span>Hi, </span>
+                        Varsha {""}
+                    </One>
+                    <Img>
+                        <img
+                            src="https://s3.ap-south-1.amazonaws.com/talrop.com-react-assets-bucket/assets/images/30-04-2022/decor.svg"
+                            alt="img"
+                        />
+                    </Img>
+                </Top>
+                <Bottom>
+                    <Div onClick={() => setDash((prev) => !prev)}>
+                        <h3>Subjects</h3>
+                        <Item>
+                            <Items>
+                                <Imgs>
+                                    <img
+                                        src="https://d3mbaugvr53zg5.cloudfront.net/media/e-learning/photos/subject-images/1_6x8IJAf.svg"
+                                        alt="img"
+                                    />
+                                </Imgs>
+                                <Round>
+                                    <img
+                                        src="https://d3mbaugvr53zg5.cloudfront.net/media/e-learning/photos/subject-images/techschooling_qZi8bG4.svg"
+                                        alt="img"
+                                    />
+                                </Round>
+                                <Heading>Tech Schooling</Heading>
+                                <Arrow>
+                                    <img
+                                        src="https://d3mbaugvr53zg5.cloudfront.net/media/e-learning/photos/subject-images/greenarrow_KMnh8MC.svg"
+                                        alt="img"
+                                    />
+                                </Arrow>
+                                <Dots>
+                                    <img
+                                        src="https://d3mbaugvr53zg5.cloudfront.net/media/e-learning/photos/subject-images/1_znke34i.svg"
+                                        alt="img"
+                                    />
+                                </Dots>
+                            </Items>
+                        </Item>
+                    </Div>
+                </Bottom>
+            </Container>
+
+            <FreeGround />
+        </>
     );
 }
 
@@ -136,7 +141,7 @@ const Heading = styled.h3`
 `;
 const Arrow = styled.div`
     width: 25px;
-    margin-top: 90px;
+    margin-top: 70px;
     cursor: pointer;
 
     img {

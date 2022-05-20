@@ -34,7 +34,7 @@ function Workshop() {
                         <ContentSection>
                             <Heading>
                                 <span>#1</span>
-                                <h4>Cashing Post Page </h4>
+                                <h4>Caching Post Page </h4>
                             </Heading>
                             <Developer>
                                 <Icon>

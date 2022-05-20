@@ -3,7 +3,7 @@ import { Route, Routes, Link } from "react-router-dom";
 import styled from "styled-components";
 import Home from "../screens/Home";
 
-function SideBar() {
+function SideBar({ setDash }) {
     return (
         <Section>
             <Wrapper>
@@ -15,7 +15,9 @@ function SideBar() {
                                 alt="Image"
                             />
                         </ImgContainer>
-                        <H4 to="/home">Dashboard</H4>
+                        <Das onClick={() => setDash((prev) => !prev)}>
+                            Dashboard
+                        </Das>
                     </TopContainer>
                     <MiddleContainer>
                         <One>
@@ -76,7 +78,7 @@ function SideBar() {
                         <Image>
                             <ImageContainer>
                                 <img
-                                    src="	https://s3.ap-south-1.amazonaws.com/talrop.com-react-assets-bucket/assets/images/social/instagram.svg"
+                                    src="https://s3.ap-south-1.amazonaws.com/talrop.com-react-assets-bucket/assets/images/social/instagram.svg"
                                     alt="Image"
                                 />
                             </ImageContainer>
@@ -163,6 +165,19 @@ const ImgContainer = styled.div`
     img {
         display: block;
         width: 100%;
+    }
+`;
+const Das = styled.p`
+    margin-left: 20px;
+    font-family: "gordita_medium";
+    font-size: 14px;
+    color: #333;
+    &:hover {
+        color: #5dc66a;
+    }
+    &.explore {
+        color: #fff;
+        margin-right: 3px;
     }
 `;
 const MiddleContainer = styled.div`

@@ -153,8 +153,8 @@ const DateContainer = styled.div`
     align-items: center;
     padding: 10px;
     justify-content: space-between;
-    min-height: 22px;
-    width: 350px;
+    min-height: 18px;
+    width: 312px;
     border: 2px dashed rgb(16, 167, 112);
     background-color: rgb(231, 255, 246);
     border-radius: 5px;
