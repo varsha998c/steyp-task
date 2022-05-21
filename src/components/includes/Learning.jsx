@@ -1,43 +1,159 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { IoLayersOutline } from "react-icons/io5";
 import { AiOutlineClockCircle } from "react-icons/ai";
+import axios from "axios";
+import { learnConfig } from "../../axiosConfig";
 
 function Learning() {
+    let access_tocken = "3R0rIAf1BgQfv0M4R1DY7CmULWKkFo";
+    useEffect(() => {
+        learnConfig
+            .get("learn/designations/tech-schooling/", {
+                headers: {
+                    Authorization: `Bearer ${access_tocken}`,
+                },
+            })
+            .then((res) => {
+                // const { StatusCode, data } = res.data;
+                // if (StatusCode === 6000) {
+                //     setItem(data);
+                // }
+
+                if (res.data.StatusCode === 6000) {
+                    setItem(res.data.data);
+                } else if (res.data.StatusCode === 6001) {
+                    console.log("6001");
+                }
+                console.log(res, "tre");
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    }, []);
+    const [item, setItem] = useState([]);
+
+    // const [item, setItem] = useState([
+    //     {
+    //         id: 1,
+    //         img: "https://d3mbaugvr53zg5.cloudfront.net/media/elearning/designation/UI_Engineer.jpg",
+    //         heading: "UI Engineer",
+    //         skill: "9 skills",
+    //         time: "65 hrs, 5 mins",
+    //     },
+    //     {
+    //         id: 2,
+    //         img: "https://d3mbaugvr53zg5.cloudfront.net/media/elearning/designation/UI_Engineer.jpg",
+    //         heading: "UI Engineer",
+    //         skill: "9 skills",
+    //         time: "65 hrs, 5 mins",
+    //     },
+    //     {
+    //         id: 3,
+    //         img: "https://d3mbaugvr53zg5.cloudfront.net/media/elearning/designation/UI_Engineer.jpg",
+    //         heading: "UI Engineer",
+    //         skill: "9 skills",
+    //         time: "65 hrs, 5 mins",
+    //     },
+    //     {
+    //         id: 4,
+    //         img: "https://d3mbaugvr53zg5.cloudfront.net/media/elearning/designation/UI_Engineer.jpg",
+    //         heading: "UI Engineer",
+    //         skill: "9 skills",
+    //         time: "65 hrs, 5 mins",
+    //     },
+    //     {
+    //         id: 5,
+    //         img: "https://d3mbaugvr53zg5.cloudfront.net/media/elearning/designation/UI_Engineer.jpg",
+    //         heading: "UI Engineer",
+    //         skill: "9 skills",
+    //         time: "65 hrs, 5 mins",
+    //     },
+    //     {
+    //         id: 6,
+    //         img: "https://d3mbaugvr53zg5.cloudfront.net/media/elearning/designation/UI_Engineer.jpg",
+    //         heading: "UI Engineer",
+    //         skill: "9 skills",
+    //         time: "65 hrs, 5 mins",
+    //     },
+    //     {
+    //         id: 7,
+    //         img: "https://d3mbaugvr53zg5.cloudfront.net/media/elearning/designation/UI_Engineer.jpg",
+    //         heading: "UI Engineer",
+    //         skill: "9 skills",
+    //         time: "65 hrs, 5 mins",
+    //     },
+    //     {
+    //         id: 8,
+    //         img: "https://d3mbaugvr53zg5.cloudfront.net/media/elearning/designation/UI_Engineer.jpg",
+    //         heading: "UI Engineer",
+    //         skill: "9 skills",
+    //         time: "65 hrs, 5 mins",
+    //     },
+    //     {
+    //         id: 9,
+    //         img: "https://d3mbaugvr53zg5.cloudfront.net/media/elearning/designation/UI_Engineer.jpg",
+    //         heading: "UI Engineer",
+    //         skill: "9 skills",
+    //         time: "65 hrs, 5 mins",
+    //     },
+    //     {
+    //         id: 10,
+    //         img: "https://d3mbaugvr53zg5.cloudfront.net/media/elearning/designation/UI_Engineer.jpg",
+    //         heading: "UI Engineer",
+    //         skill: "9 skills",
+    //         time: "65 hrs, 5 mins",
+    //     },
+    // ]);
     return (
         <Container>
             <Content>
                 <h2>Professions</h2>
                 <Items>
-                    <Item>
-                        <Left>
-                            <img
-                                src="https://d3mbaugvr53zg5.cloudfront.net/media/elearning/designation/UI_Engineer.jpg"
-                                alt="img"
-                            />
-                        </Left>
-                        <Right>
-                            <Heading>
-                                #<Span>1</Span>
-                            </Heading>
-                            <SubHeading>UI Engineer</SubHeading>
-                            <BottomDiv>
-                                <Skill>
-                                    <ImgContainer>
-                                        <IoLayersOutline />
-                                    </ImgContainer>
-                                    <span>9 Skills</span>
-                                </Skill>
-                                <TimeContainer>
-                                    <ImgContainer>
-                                        <AiOutlineClockCircle />
-                                    </ImgContainer>
-                                    <span>65 hrs, 5 mins</span>
-                                </TimeContainer>
-                            </BottomDiv>
-                        </Right>
-                    </Item>
-                    <Item>
+                    {item.map((items) => (
+                        <Item
+                            className={
+                                items.status === "completed"
+                                    ? "completed"
+                                    : "not-completed"
+                            }
+                        >
+                            <Left
+                                className={
+                                    items.status === "completed"
+                                        ? "completed"
+                                        : "not-completed"
+                                }
+                            >
+                                <img src={items.image} alt="img" />
+                            </Left>
+                            <Right>
+                                <Heading>
+                                    #<Span>1</Span>
+                                </Heading>
+                                <SubHeading>{items.name}</SubHeading>
+                                {items.status === "completed" ? (
+                                    <BottomDiv>
+                                        <Skill>
+                                            <ImgContainer>
+                                                <IoLayersOutline />
+                                            </ImgContainer>
+                                            <span>{items.skills} Skills</span>
+                                        </Skill>
+                                        <TimeContainer>
+                                            <ImgContainer>
+                                                <AiOutlineClockCircle />
+                                            </ImgContainer>
+                                            <span>{items.duration}</span>
+                                        </TimeContainer>
+                                    </BottomDiv>
+                                ) : (
+                                    ""
+                                )}
+                            </Right>
+                        </Item>
+                    ))}
+                    {/* <Item>
                         <Left>
                             <img
                                 src="https://d3mbaugvr53zg5.cloudfront.net/media/elearning/designation/Backend_Developer_ACsVD3G.jpg"
@@ -232,7 +348,7 @@ function Learning() {
                             </Heading>
                             <SubHeading>UI Engineer</SubHeading>
                         </Right>
-                    </Item>
+                    </Item> */}
                 </Items>
             </Content>
         </Container>
@@ -285,6 +401,12 @@ const Item = styled.div`
     &:nth-child(10) {
         margin-right: 0;
     }
+    &.not-completed {
+        cursor: not-allowed;
+        position: relative;
+        overflow: hidden;
+        filter: grayscale(1);
+    }
 `;
 const Left = styled.div`
     width: 160px;
@@ -293,6 +415,19 @@ const Left = styled.div`
         display: block;
         width: 100%;
         border-radius: 6px;
+    }
+    &.not-completed {
+        cursor: not-allowed;
+        position: relative;
+        overflow: hidden;
+        &::after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+        }
     }
 `;
 const Right = styled.div`

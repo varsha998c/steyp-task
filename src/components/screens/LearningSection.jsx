@@ -2,7 +2,6 @@ import React from "react";
 import Learning from "../includes/Learning";
 import styled from "styled-components";
 import Header from "../general/Header";
-import SideBar from "../includes/SideBar";
 
 function LearningSection() {
     return (
