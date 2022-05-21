@@ -129,7 +129,7 @@ function Learning() {
                             </Left>
                             <Right>
                                 <Heading>
-                                    #<Span>1</Span>
+                                    #<Span>{items.order_id}</Span>
                                 </Heading>
                                 <SubHeading>{items.name}</SubHeading>
                                 {items.status === "completed" ? (
@@ -151,6 +151,18 @@ function Learning() {
                                     ""
                                 )}
                             </Right>
+                            <Lock
+                                className={
+                                    items.status === "completed"
+                                        ? "completed"
+                                        : "not-completed"
+                                }
+                            >
+                                <img
+                                    src="https://s3.ap-south-1.amazonaws.com/talrop.com-react-assets-bucket/assets/images/auth/lock.svg"
+                                    alt="lock"
+                                />
+                            </Lock>
                         </Item>
                     ))}
                     {/* <Item>
@@ -485,4 +497,17 @@ const Span = styled.span`
     color: rgb(63, 81, 181);
     font-size: 16px;
     margin-left: 4px;
+`;
+const Lock = styled.div`
+    width: 15px;
+    position: absolute;
+    right: 15px;
+    bottom: 15px;
+    img {
+        width: 100%;
+        display: block;
+    }
+    &.completed {
+        display: none;
+    }
 `;
