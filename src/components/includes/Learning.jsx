@@ -398,6 +398,7 @@ const Item = styled.div`
     align-items: center;
     margin-bottom: 14px;
     margin-right: 8px;
+    cursor: pointer;
     &:nth-child(2) {
         margin-right: 0;
     }
