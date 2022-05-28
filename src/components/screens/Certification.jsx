@@ -102,6 +102,8 @@ const Container = styled.div`
     background-color: rgb(249, 249, 251);
     padding: 25px;
     margin-top: 30px;
+    width: 77%;
+    margin-left: 270px;
 `;
 const Item = styled.div`
     display: flex;

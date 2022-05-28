@@ -1,9 +1,12 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Challeges from "./Challeges";
 import FreeGround from "./FreeGround";
 
 function Home({ setDash }) {
+    console.log("in home");
+    const navigate = useNavigate();
     return (
         <>
             <Container>
@@ -20,7 +23,7 @@ function Home({ setDash }) {
                     </Img>
                 </Top>
                 <Bottom>
-                    <Div onClick={() => setDash((prev) => !prev)}>
+                    <Div onClick={() => navigate("dashboard")}>
                         <h3>Subjects</h3>
                         <Item>
                             <Items>

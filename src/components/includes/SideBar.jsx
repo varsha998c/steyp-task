@@ -3,7 +3,7 @@ import { Route, Routes, Link } from "react-router-dom";
 import styled from "styled-components";
 import Home from "../screens/Home";
 
-function SideBar({ setDash }) {
+function SideBar() {
     return (
         <Section>
             <Wrapper>
@@ -15,9 +15,7 @@ function SideBar({ setDash }) {
                                 alt="Image"
                             />
                         </ImgContainer>
-                        <Das onClick={() => setDash((prev) => !prev)}>
-                            Dashboard
-                        </Das>
+                        <H4 to="/">Dashboard</H4>
                     </TopContainer>
                     <MiddleContainer>
                         <One>
@@ -27,7 +25,7 @@ function SideBar({ setDash }) {
                                     alt="Image"
                                 />
                             </ImgContainer>
-                            <H4 to="/">Free Ground</H4>
+                            <H4 to="/free-ground">Free Ground</H4>
                         </One>
                         <Two>
                             <ImgContainer>
@@ -36,7 +34,7 @@ function SideBar({ setDash }) {
                                     alt="Image"
                                 />
                             </ImgContainer>
-                            <H4 to="/">Challeges</H4>
+                            <H4 to="/challenges">Challeges</H4>
                         </Two>
                         <Three>
                             <ImgContainer>
@@ -115,7 +113,7 @@ function SideBar({ setDash }) {
 export default SideBar;
 const Section = styled.div`
     background: rgb(249, 249, 251);
-    width: 238px;
+    width: 60px;
     border-top: 1px solid rgb(239, 239, 239);
     position: fixed;
     z-index: 100;
@@ -129,8 +127,15 @@ const Section = styled.div`
     -webkit-box-pack: justify;
     justify-content: space-between;
     display: flex;
+    cursor: pointer;
     ::-webkit-scrollbar {
         display: none;
+    }
+    &:hover {
+        width: 238px;
+    }
+    &:hover a {
+        display: block;
     }
 `;
 const Wrapper = styled.div`
@@ -167,13 +172,15 @@ const ImgContainer = styled.div`
         width: 100%;
     }
 `;
-const Das = styled.p`
+const H4 = styled(Link)`
     margin-left: 20px;
     font-family: "gordita_medium";
     font-size: 14px;
     color: #333;
+    display: none;
     &:hover {
         color: #5dc66a;
+        display: block;
     }
     &.explore {
         color: #fff;
@@ -272,19 +279,20 @@ const ButtonDiv = styled.div`
     cursor: pointer;
     padding: 13px;
 `;
-const H4 = styled(Link)`
-    margin-left: 20px;
-    font-family: "gordita_medium";
-    font-size: 14px;
-    color: #333;
-    &:hover {
-        color: #5dc66a;
-    }
-    &.explore {
-        color: #fff;
-        margin-right: 3px;
-    }
-`;
+// const H4 = styled(Link)`
+//     margin-left: 20px;
+//     font-family: "gordita_medium";
+//     font-size: 14px;
+//     color: #333;
+//     &:hover {
+//         color: #5dc66a;
+//     }
+//     &.explore {
+//         color: #fff;
+//         margin-right: 3px;
+//     }
+//     display: none;
+// `;
 const Arrow = styled.div`
     width: 15px;
     img {

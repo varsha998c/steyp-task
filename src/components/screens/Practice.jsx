@@ -87,7 +87,7 @@ function Practice() {
                         Currently, you have no practices to attend. Please go to
                         your next activity to unlock more practices.
                     </Description>
-                    <Button to="/dashboard">Go to Learn dashboard</Button>
+                    <Button to="/">Go to Learn dashboard</Button>
                 </TopContainer>
                 <BottomContainer>
                     <h3>Upcoming Practices</h3>
@@ -139,45 +139,6 @@ function Practice() {
                                 </Right>
                             </Card>
                         ))}
-
-                        {/* <Card>
-                            <ImgContainer>
-                                <img
-                                    src="https://d3mbaugvr53zg5.cloudfront.net/media/learn/practices/practice/01_-_Create_Profile_Website_2tdILSb.jpg"
-                                    alt="Image"
-                                />
-                            </ImgContainer>
-                            <Mark>
-                                <img
-                                    src="https://s3.ap-south-1.amazonaws.com/talrop.com-react-assets-bucket/assets/images/star.svg"
-                                    alt=""
-                                />
-                                <span>10/10</span>
-                            </Mark>
-                            <Right>
-                                <Heading className="one">#2</Heading>
-                                <Title>Create a Profile Website</Title>
-                            </Right>
-                        </Card>
-                        <Card>
-                            <ImgContainer>
-                                <img
-                                    src="https://d3mbaugvr53zg5.cloudfront.net/media/learn/practices/practice/01_-_Create_Profile_Website_2tdILSb.jpg"
-                                    alt="Image"
-                                />
-                            </ImgContainer>
-                            <Mark>
-                                <img
-                                    src="https://s3.ap-south-1.amazonaws.com/talrop.com-react-assets-bucket/assets/images/star.svg"
-                                    alt=""
-                                />
-                                <span>10/10</span>
-                            </Mark>
-                            <Right>
-                                <Heading className="one">#3</Heading>
-                                <Title>Create a Profile Website</Title>
-                            </Right>
-                        </Card> */}
                     </Header>
                 </ContentContainer>
             </Right>
@@ -189,6 +150,8 @@ export default Practice;
 const Container = styled.div`
     display: flex;
     justify-content: space-between;
+    width: 80%;
+    margin-left: 270px;
 `;
 const Left = styled.div`
     width: 45%;

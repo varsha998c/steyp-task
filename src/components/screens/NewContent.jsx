@@ -63,10 +63,13 @@ function NewContent() {
 
 export default NewContent;
 const Content = styled.div`
+    width: 80%;
+    margin-left: 270px;
     h2 {
         font-size: 20px;
         color: #000;
         margin-top: 30px;
+        margin-bottom: 20px;
         font-family: gordita_medium;
     }
 `;

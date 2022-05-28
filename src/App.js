@@ -10,7 +10,7 @@ import MenusContainer from "./components/includes/MenusContainer";
 import SideBar from "./components/includes/SideBar";
 import Home from "./components/screens/Home";
 import { useState } from "react";
-import FreeGround from "./components/screens/FreeGround";
+import MainRouter from "./components/routing/routers/MainRouter";
 
 function App() {
     const [dash, setDash] = useState(true);
@@ -18,9 +18,7 @@ function App() {
     return (
         <>
             <BrowserRouter>
-                <Header />
-                <SideBar setDash={setDash} />
-                {dash ? <Home setDash={setDash} /> : <MenusContainer />}
+                <MainRouter />
             </BrowserRouter>
         </>
     );

@@ -3,10 +3,13 @@ import styled from "styled-components";
 import { IoLayersOutline } from "react-icons/io5";
 import { AiOutlinePlayCircle } from "react-icons/ai";
 import { learnConfig, practiceConfig } from "../../axiosConfig";
+import { Link } from "react-router-dom";
 
 function Workshop() {
     const [item, setItem] = useState([]);
     const [isData, setData] = useState([]);
+    const [three, setThree] = useState([]);
+
     let access_token = "ZgFHzMlH6fij7lh8J6B8pHeaBtzoMA";
     useEffect(() => {
         practiceConfig
@@ -19,6 +22,7 @@ function Workshop() {
                 const { StatusCode, data } = res.data;
                 if (StatusCode === 6000) {
                     setItem(data);
+                    setThree(item.slice(0, 3));
                 } else if (StatusCode === 6001) {
                     console.log("6001");
                 }
@@ -56,7 +60,7 @@ function Workshop() {
                         Currently, you have no workshops to attend. Please go to
                         your next activity to unlock more workshops.
                     </Description>
-                    <Button>Go to Learn dashboard</Button>
+                    <Button to="/">Go to Learn dashboard</Button>
                 </TopContainer>
                 <BottomContainer>
                     <h3>Upcoming Workshops</h3>
@@ -97,7 +101,7 @@ function Workshop() {
                             <h2>Completed Workshops</h2>
                             <ButtonDiv>View All</ButtonDiv>
                         </Top>
-                        {item.map((items) => (
+                        {three.map((items) => (
                             <Card>
                                 <ImgContainer>
                                     <img src={items.image} alt="Image" />
@@ -125,63 +129,6 @@ function Workshop() {
                                 </Right>
                             </Card>
                         ))}
-
-                        {/* <Card>
-                            <ImgContainer>
-                                <img
-                                    src="https://d3mbaugvr53zg5.cloudfront.net/media/learn/workshop/workshop/03_-_Wibbitz_Middle_section.jpg"
-                                    alt="Image"
-                                />
-                            </ImgContainer>
-
-                            <Right>
-                                <Heading className="one">
-                                    #99<h6>Caching Post Page</h6>
-                                </Heading>
-                                <Developer className="one">
-                                    <Icon>
-                                        <IoLayersOutline />
-                                        <h6>Backend Developer</h6>
-                                    </Icon>
-                                    <Icon>
-                                        <AiOutlinePlayCircle />
-                                        <h6>1 Topic</h6>
-                                    </Icon>
-                                    <Icon>
-                                        <AiOutlinePlayCircle />
-                                        <h6>4 mins</h6>
-                                    </Icon>
-                                </Developer>
-                            </Right>
-                        </Card>
-                        <Card>
-                            <ImgContainer>
-                                <img
-                                    src="https://d3mbaugvr53zg5.cloudfront.net/media/learn/workshop/workshop/03_-_Wibbitz_Middle_section.jpg"
-                                    alt="Image"
-                                />
-                            </ImgContainer>
-
-                            <Right>
-                                <Heading className="one">
-                                    #99<h6>Caching Post Page</h6>
-                                </Heading>
-                                <Developer className="one">
-                                    <Icon>
-                                        <IoLayersOutline />
-                                        <h6>Backend Developer</h6>
-                                    </Icon>
-                                    <Icon>
-                                        <AiOutlinePlayCircle />
-                                        <h6>1 Topic</h6>
-                                    </Icon>
-                                    <Icon>
-                                        <AiOutlinePlayCircle />
-                                        <h6>4 mins</h6>
-                                    </Icon>
-                                </Developer>
-                            </Right>
-                        </Card> */}
                     </Header>
                 </ContentContainer>
             </Right>
@@ -193,6 +140,8 @@ export default Workshop;
 const Container = styled.div`
     display: flex;
     justify-content: space-between;
+    width: 80%;
+    margin-left: 270px;
 `;
 const Left = styled.div`
     width: 41%;
@@ -230,7 +179,7 @@ const Description = styled.p`
     font-size: 14px;
     text-align: center;
 `;
-const Button = styled.div`
+const Button = styled(Link)`
     width: 164px;
     background-color: rgb(10, 129, 251);
     font-family: gordita_medium;
@@ -238,7 +187,8 @@ const Button = styled.div`
     color: rgb(255, 255, 255);
     border-radius: 10px;
     font-size: 14px;
-    /* text-align: center; */
+    cursor: pointer;
+    display: block;
     margin: 0 auto;
 `;
 const BottomContainer = styled.div`
@@ -327,7 +277,6 @@ const Card = styled.div`
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    flex-wrap: wrap;
     background-color: rgb(255, 255, 255);
     padding: 20px 10px 20px 20px;
     margin-bottom: 10px;

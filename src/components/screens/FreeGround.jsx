@@ -269,10 +269,12 @@ const Container = styled.div`
     height: 90vh;
     overflow-y: scroll;
     margin-top: 61px;
-    margin-left: 238px;
-    padding: 10px 20px 0 20px;
+    padding: 10px 20px 0 83px;
     display: flex;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
     flex-direction: column;
+    width: 94%;
 `;
 const Top = styled.div`
     display: flex;

@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, Route, Routes } from "react-router-dom";
+import { Link, Outlet, Route, Routes } from "react-router-dom";
 import styled from "styled-components";
 import Main from "../general/Main";
 import Assessments from "../screens/Assessments";
@@ -8,32 +8,27 @@ import LearningSection from "../screens/LearningSection";
 import NewContent from "../screens/NewContent";
 import Practice from "../screens/Practice";
 import Workshop from "../screens/Workshop";
+import Tech from "./Tech";
 
 const MenusContainer = () => {
     return (
-        <Cover>
-            <h2>Tech Schooling</h2>
-            <Div>
-                <Ul>
-                    <Li to="/dashboard">Dashboard</Li>
-                    <Li to="/">Learning</Li>
-                    <Li to="/practice">Practices</Li>
-                    <Li to="/workshop">Workshops</Li>
-                    <Li to="/assessments">Assessments</Li>
-                    <Li to="/new_content">New Content</Li>
-                    <Li to="/certificate">Certification</Li>
-                </Ul>
-            </Div>
-            <Routes>
-                <Route path="/" element={<LearningSection />} />
-                <Route path="dashboard" element={<Main />} />
-                <Route path="practice" element={<Practice />} />
-                <Route path="workshop" element={<Workshop />} />
-                <Route path="assessments" element={<Assessments />} />
-                <Route path="new_content" element={<NewContent />} />
-                <Route path="certificate" element={<Certification />} />
-            </Routes>
-        </Cover>
+        <>
+            <Cover>
+                <h2>Tech Schooling</h2>
+                <Div>
+                    <Ul>
+                        <Li to="/">Dashboard</Li>
+                        <Li to="/learning">Learning</Li>
+                        <Li to="/practice">Practices</Li>
+                        <Li to="/workshop">Workshops</Li>
+                        <Li to="/assessments">Assessments</Li>
+                        <Li to="/new_content">New Content</Li>
+                        <Li to="/certificate">Certification</Li>
+                    </Ul>
+                </Div>
+            </Cover>
+            <Outlet />
+        </>
     );
 };
 

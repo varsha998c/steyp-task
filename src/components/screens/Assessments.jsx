@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { IoLayersOutline } from "react-icons/io5";
 import { practiceConfig } from "../../axiosConfig";
+import { Link } from "react-router-dom";
 
 function Assessments() {
     const [completed, setCompleted] = useState([]);
@@ -46,7 +47,7 @@ function Assessments() {
                         Currently, you have no assessments to attend. Please go
                         to your next activity to unlock more assessments.
                     </Description>
-                    <Button>Go to Learn dashboard</Button>
+                    <Button to="/">Go to Learn dashboard</Button>
                 </TopContainer>
                 <BottomContainer>
                     <h3>Upcoming Assessments</h3>
@@ -102,6 +103,8 @@ export default Assessments;
 const Container = styled.div`
     display: flex;
     justify-content: space-between;
+    width: 80%;
+    margin-left: 270px;
 `;
 const Left = styled.div`
     width: 40%;
@@ -139,8 +142,9 @@ const Description = styled.p`
     font-size: 14px;
     text-align: center;
 `;
-const Button = styled.div`
+const Button = styled(Link)`
     width: 164px;
+    display: block;
     background-color: rgb(10, 129, 251);
     font-family: gordita_medium;
     padding: 8px 25px;

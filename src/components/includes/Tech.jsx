@@ -5,6 +5,7 @@ import "../../assets/css/style.css";
 import { learnConfig, practiceConfig } from "../../axiosConfig";
 import { logDOM } from "@testing-library/react";
 import axios from "axios";
+import MenusContainer from "./MenusContainer";
 
 function Tech() {
     const [items, setItems] = useState([]);
@@ -130,6 +131,7 @@ function Tech() {
     // },
     return (
         <Container>
+            {/* <MenusContainer /> */}
             <Content>
                 <Headings>
                     <h3>Achievements</h3>
@@ -269,7 +271,8 @@ const Li = styled.div`
     }
 `;
 const Content = styled.div`
-    margin-top: 20px;
+    width: 81%;
+    margin-left: 264px;
 `;
 const Items = styled.div`
     display: flex;
