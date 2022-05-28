@@ -3,15 +3,15 @@ import styled from "styled-components";
 import { IoLayersOutline } from "react-icons/io5";
 import { AiOutlineClockCircle } from "react-icons/ai";
 import axios from "axios";
-import { learnConfig } from "../../axiosConfig";
+import { practiceConfig } from "../../axiosConfig";
 
 function Learning() {
-    let access_tocken = "3R0rIAf1BgQfv0M4R1DY7CmULWKkFo";
+    let access_token = "ZgFHzMlH6fij7lh8J6B8pHeaBtzoMA";
     useEffect(() => {
-        learnConfig
+        practiceConfig
             .get("learn/designations/tech-schooling/", {
                 headers: {
-                    Authorization: `Bearer ${access_tocken}`,
+                    Authorization: `Bearer ${access_token}`,
                 },
             })
             .then((res) => {
@@ -25,7 +25,7 @@ function Learning() {
                 } else if (res.data.StatusCode === 6001) {
                     console.log("6001");
                 }
-                console.log(res, "tre");
+                console.log(res, "true");
             })
             .catch((err) => {
                 console.log(err);

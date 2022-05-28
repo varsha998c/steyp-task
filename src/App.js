@@ -21,8 +21,6 @@ function App() {
                 <Header />
                 <SideBar setDash={setDash} />
                 {dash ? <Home setDash={setDash} /> : <MenusContainer />}
-                {/* {free ? <FreeGround setFree={setFree} /> : <MenusContainer />} */}
-                {/* <MenusContainer /> */}
             </BrowserRouter>
         </>
     );

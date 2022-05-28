@@ -1,8 +1,35 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { IoLayersOutline } from "react-icons/io5";
+import { practiceConfig } from "../../axiosConfig";
 
 function Assessments() {
+    const [completed, setCompleted] = useState([]);
+    const [three, setThree] = useState([]);
+
+    let access_token = "ZgFHzMlH6fij7lh8J6B8pHeaBtzoMA";
+
+    useEffect(() => {
+        practiceConfig
+            .get("assessments/completed-assessments/tech-schooling/", {
+                headers: {
+                    authorization: `Bearer ${access_token}`,
+                },
+            })
+            .then((res) => {
+                const { StatusCode, data } = res.data;
+                if (StatusCode === 6000) {
+                    setCompleted(data);
+                    setThree(completed.slice(0, 3));
+                } else if (StatusCode === 6001) {
+                    console.log("6001");
+                }
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    }, []);
+
     return (
         <Container>
             <Left>
@@ -44,63 +71,26 @@ function Assessments() {
                             <h3>Attended Assessments</h3>
                             <ButtonDiv>View All</ButtonDiv>
                         </Top>
-                        <Card>
-                            <ImgContainer>
-                                <img
-                                    src="https://d3mbaugvr53zg5.cloudfront.net/media/learn/assessments/assessment/12_-_Virtual_Environment__1.jpg"
-                                    alt="Image"
-                                />
-                            </ImgContainer>
-                            <Mark>
-                                <img
-                                    src="https://s3.ap-south-1.amazonaws.com/talrop.com-react-assets-bucket/assets/images/star.svg"
-                                    alt=""
-                                />
-                                <span>10/10</span>
-                            </Mark>
-                            <Right>
-                                <Heading className="one">#1</Heading>
-                                <Title>Assessment in Virtual Environment</Title>
-                            </Right>
-                        </Card>
-                        <Card>
-                            <ImgContainer>
-                                <img
-                                    src="https://d3mbaugvr53zg5.cloudfront.net/media/learn/assessments/assessment/09_-_Datetime_module__1.jpg"
-                                    alt="Image"
-                                />
-                            </ImgContainer>
-                            <Mark>
-                                <img
-                                    src="https://s3.ap-south-1.amazonaws.com/talrop.com-react-assets-bucket/assets/images/star.svg"
-                                    alt=""
-                                />
-                                <span>10/10</span>
-                            </Mark>
-                            <Right>
-                                <Heading className="one">#2</Heading>
-                                <Title>Assessment in Datetime Module</Title>
-                            </Right>
-                        </Card>
-                        <Card>
-                            <ImgContainer>
-                                <img
-                                    src="https://d3mbaugvr53zg5.cloudfront.net/media/learn/assessments/assessment/09_-_Datetime_module__1.jpg"
-                                    alt="Image"
-                                />
-                            </ImgContainer>
-                            <Mark>
-                                <img
-                                    src="https://s3.ap-south-1.amazonaws.com/talrop.com-react-assets-bucket/assets/images/star.svg"
-                                    alt=""
-                                />
-                                <span>10/10</span>
-                            </Mark>
-                            <Right>
-                                <Heading className="one">#3</Heading>
-                                <Title>Assessment in Datetime Module</Title>
-                            </Right>
-                        </Card>
+                        {three.map((item) => (
+                            <Card>
+                                <ImgContainer>
+                                    <img src={item.image} alt="Image" />
+                                </ImgContainer>
+                                <Mark>
+                                    <img
+                                        src="https://s3.ap-south-1.amazonaws.com/talrop.com-react-assets-bucket/assets/images/star.svg"
+                                        alt=""
+                                    />
+                                    <span>10/10</span>
+                                </Mark>
+                                <Right>
+                                    <Heading className="one">
+                                        #{item.auto_id}
+                                    </Heading>
+                                    <Title>{item.title}</Title>
+                                </Right>
+                            </Card>
+                        ))}
                     </Header>
                 </ContentContainer>
             </Right>

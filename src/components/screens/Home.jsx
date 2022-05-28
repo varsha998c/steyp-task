@@ -55,8 +55,8 @@ function Home({ setDash }) {
                 </Bottom>
             </Container>
 
-            <FreeGround />
-            <Challeges />
+            {/* <FreeGround />
+            <Challeges /> */}
         </>
     );
 }

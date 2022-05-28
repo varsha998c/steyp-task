@@ -1,109 +1,133 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Performance from "./Performance";
 import "../../assets/css/style.css";
+import { learnConfig, practiceConfig } from "../../axiosConfig";
+import { logDOM } from "@testing-library/react";
+import axios from "axios";
 
 function Tech() {
-    const [items, setItems] = useState([
-        {
-            id: 1,
-            img: "https://d3mbaugvr53zg5.cloudfront.net/media/elearning/designation/UI_Engineer.jpg",
-            name: "UI Engineer",
-            date: "Completed on 27 Oct 2021",
-            star: "https://s3.ap-south-1.amazonaws.com/talrop.com-react-assets-bucket/assets/images/star.svg",
-        },
-        {
-            id: 2,
-            img: "https://d3mbaugvr53zg5.cloudfront.net/media/elearning/designation/UI_Engineer.jpg",
-            name: "Backend Developer",
-            date: "Completed on 27 Oct 2021",
-            star: "https://s3.ap-south-1.amazonaws.com/talrop.com-react-assets-bucket/assets/images/star.svg",
-        },
-        {
-            id: 3,
-            img: "https://d3mbaugvr53zg5.cloudfront.net/media/elearning/designation/UI_Engineer.jpg",
-            name: "DevOps Engineer",
-            date: "Completed on 27 Oct 2021",
-            star: "https://s3.ap-south-1.amazonaws.com/talrop.com-react-assets-bucket/assets/images/star.svg",
-        },
-        {
-            id: 4,
-            img: "https://d3mbaugvr53zg5.cloudfront.net/media/elearning/designation/UI_Engineer.jpg",
-            name: "Web Application Developer",
-            date: "Completed on 27 Oct 2021",
-            star: "https://s3.ap-south-1.amazonaws.com/talrop.com-react-assets-bucket/assets/images/star.svg",
-        },
-        {
-            id: 5,
-            img: "https://d3mbaugvr53zg5.cloudfront.net/media/elearning/designation/UI_Engineer.jpg",
-            name: "Mobile Application Developer",
-            date: "Completed on 27 Oct 2021",
-            star: "https://s3.ap-south-1.amazonaws.com/talrop.com-react-assets-bucket/assets/images/star.svg",
-        },
-        {
-            id: 6,
-            img: "https://d3mbaugvr53zg5.cloudfront.net/media/elearning/designation/UI_Engineer.jpg",
-            name: "Data Scientist",
-            date: "Completed on 27 Oct 2021",
-            star: "https://s3.ap-south-1.amazonaws.com/talrop.com-react-assets-bucket/assets/images/star.svg",
-        },
-        {
-            id: 7,
-            img: "https://d3mbaugvr53zg5.cloudfront.net/media/elearning/designation/UI_Engineer.jpg",
-            name: "Machine Learning Engineer",
-            date: "Completed on 27 Oct 2021",
-            star: "https://s3.ap-south-1.amazonaws.com/talrop.com-react-assets-bucket/assets/images/star.svg",
-        },
-        {
-            id: 8,
-            img: "https://d3mbaugvr53zg5.cloudfront.net/media/elearning/designation/UI_Engineer.jpg",
-            name: "AI Engineer",
-            date: "Completed on 27 Oct 2021",
-            star: "https://s3.ap-south-1.amazonaws.com/talrop.com-react-assets-bucket/assets/images/star.svg",
-        },
-        {
-            id: 9,
-            img: "https://d3mbaugvr53zg5.cloudfront.net/media/elearning/designation/UI_Engineer.jpg",
-            name: "UI Engineer",
-            date: "Completed on 27 Oct 2021",
-            star: "https://s3.ap-south-1.amazonaws.com/talrop.com-react-assets-bucket/assets/images/star.svg",
-        },
-        {
-            id: 10,
-            img: "https://d3mbaugvr53zg5.cloudfront.net/media/elearning/designation/UI_Engineer.jpg",
-            name: "UI Engineer",
-            date: "Completed on 27 Oct 2021",
-            star: "https://s3.ap-south-1.amazonaws.com/talrop.com-react-assets-bucket/assets/images/star.svg",
-        },
-        {
-            id: 11,
-            img: "https://d3mbaugvr53zg5.cloudfront.net/media/elearning/designation/UI_Engineer.jpg",
-            name: "UI Engineer",
-            date: "Completed on 27 Oct 2021",
-            star: "https://s3.ap-south-1.amazonaws.com/talrop.com-react-assets-bucket/assets/images/star.svg",
-        },
-        {
-            id: 12,
-            img: "https://d3mbaugvr53zg5.cloudfront.net/media/elearning/designation/UI_Engineer.jpg",
-            name: "UI Engineer",
-            date: "Completed on 27 Oct 2021",
-            star: "https://s3.ap-south-1.amazonaws.com/talrop.com-react-assets-bucket/assets/images/star.svg",
-        },
-        {
-            id: 13,
-            img: "https://d3mbaugvr53zg5.cloudfront.net/media/elearning/designation/UI_Engineer.jpg",
-            name: "UI Engineer",
-            date: "Completed on 27 Oct 2021",
-            star: "https://s3.ap-south-1.amazonaws.com/talrop.com-react-assets-bucket/assets/images/star.svg",
-        },
-        {
-            id: 14,
-            img: "https://d3mbaugvr53zg5.cloudfront.net/media/elearning/designation/UI_Engineer.jpg",
-            name: "UI Engineer",
-            date: "Completed on 27 Oct 2021",
-            star: "https://s3.ap-south-1.amazonaws.com/talrop.com-react-assets-bucket/assets/images/star.svg",
-        },
-    ]);
+    const [items, setItems] = useState([]);
+    let access_token = "ZgFHzMlH6fij7lh8J6B8pHeaBtzoMA";
+    useEffect(() => {
+        practiceConfig
+            .get("learn/achievements/tech-schooling/", {
+                headers: {
+                    Authorization: `Bearer ${access_token}`,
+                },
+            })
+            .then((res) => {
+                const { StatusCode, data } = res.data;
+                if (StatusCode === 6000) {
+                    setItems(data);
+                    console.log("22dddddddd2", res);
+                } else if (StatusCode === 6001) {
+                    console.log("res");
+                }
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    }, []);
+
+    // {
+    //     id: 1,
+    //     img: "https://d3mbaugvr53zg5.cloudfront.net/media/elearning/designation/UI_Engineer.jpg",
+    //     name: "UI Engineer",
+    //     date: "Completed on 27 Oct 2021",
+    //     star: "https://s3.ap-south-1.amazonaws.com/talrop.com-react-assets-bucket/assets/images/star.svg",
+    // },
+    // {
+    //     id: 2,
+    //     img: "https://d3mbaugvr53zg5.cloudfront.net/media/elearning/designation/UI_Engineer.jpg",
+    //     name: "Backend Developer",
+    //     date: "Completed on 27 Oct 2021",
+    //     star: "https://s3.ap-south-1.amazonaws.com/talrop.com-react-assets-bucket/assets/images/star.svg",
+    // },
+    // {
+    //     id: 3,
+    //     img: "https://d3mbaugvr53zg5.cloudfront.net/media/elearning/designation/UI_Engineer.jpg",
+    //     name: "DevOps Engineer",
+    //     date: "Completed on 27 Oct 2021",
+    //     star: "https://s3.ap-south-1.amazonaws.com/talrop.com-react-assets-bucket/assets/images/star.svg",
+    // },
+    // {
+    //     id: 4,
+    //     img: "https://d3mbaugvr53zg5.cloudfront.net/media/elearning/designation/UI_Engineer.jpg",
+    //     name: "Web Application Developer",
+    //     date: "Completed on 27 Oct 2021",
+    //     star: "https://s3.ap-south-1.amazonaws.com/talrop.com-react-assets-bucket/assets/images/star.svg",
+    // },
+    // {
+    //     id: 5,
+    //     img: "https://d3mbaugvr53zg5.cloudfront.net/media/elearning/designation/UI_Engineer.jpg",
+    //     name: "Mobile Application Developer",
+    //     date: "Completed on 27 Oct 2021",
+    //     star: "https://s3.ap-south-1.amazonaws.com/talrop.com-react-assets-bucket/assets/images/star.svg",
+    // },
+    // {
+    //     id: 6,
+    //     img: "https://d3mbaugvr53zg5.cloudfront.net/media/elearning/designation/UI_Engineer.jpg",
+    //     name: "Data Scientist",
+    //     date: "Completed on 27 Oct 2021",
+    //     star: "https://s3.ap-south-1.amazonaws.com/talrop.com-react-assets-bucket/assets/images/star.svg",
+    // },
+    // {
+    //     id: 7,
+    //     img: "https://d3mbaugvr53zg5.cloudfront.net/media/elearning/designation/UI_Engineer.jpg",
+    //     name: "Machine Learning Engineer",
+    //     date: "Completed on 27 Oct 2021",
+    //     star: "https://s3.ap-south-1.amazonaws.com/talrop.com-react-assets-bucket/assets/images/star.svg",
+    // },
+    // {
+    //     id: 8,
+    //     img: "https://d3mbaugvr53zg5.cloudfront.net/media/elearning/designation/UI_Engineer.jpg",
+    //     name: "AI Engineer",
+    //     date: "Completed on 27 Oct 2021",
+    //     star: "https://s3.ap-south-1.amazonaws.com/talrop.com-react-assets-bucket/assets/images/star.svg",
+    // },
+    // {
+    //     id: 9,
+    //     img: "https://d3mbaugvr53zg5.cloudfront.net/media/elearning/designation/UI_Engineer.jpg",
+    //     name: "UI Engineer",
+    //     date: "Completed on 27 Oct 2021",
+    //     star: "https://s3.ap-south-1.amazonaws.com/talrop.com-react-assets-bucket/assets/images/star.svg",
+    // },
+    // {
+    //     id: 10,
+    //     img: "https://d3mbaugvr53zg5.cloudfront.net/media/elearning/designation/UI_Engineer.jpg",
+    //     name: "UI Engineer",
+    //     date: "Completed on 27 Oct 2021",
+    //     star: "https://s3.ap-south-1.amazonaws.com/talrop.com-react-assets-bucket/assets/images/star.svg",
+    // },
+    // {
+    //     id: 11,
+    //     img: "https://d3mbaugvr53zg5.cloudfront.net/media/elearning/designation/UI_Engineer.jpg",
+    //     name: "UI Engineer",
+    //     date: "Completed on 27 Oct 2021",
+    //     star: "https://s3.ap-south-1.amazonaws.com/talrop.com-react-assets-bucket/assets/images/star.svg",
+    // },
+    // {
+    //     id: 12,
+    //     img: "https://d3mbaugvr53zg5.cloudfront.net/media/elearning/designation/UI_Engineer.jpg",
+    //     name: "UI Engineer",
+    //     date: "Completed on 27 Oct 2021",
+    //     star: "https://s3.ap-south-1.amazonaws.com/talrop.com-react-assets-bucket/assets/images/star.svg",
+    // },
+    // {
+    //     id: 13,
+    //     img: "https://d3mbaugvr53zg5.cloudfront.net/media/elearning/designation/UI_Engineer.jpg",
+    //     name: "UI Engineer",
+    //     date: "Completed on 27 Oct 2021",
+    //     star: "https://s3.ap-south-1.amazonaws.com/talrop.com-react-assets-bucket/assets/images/star.svg",
+    // },
+    // {
+    //     id: 14,
+    //     img: "https://d3mbaugvr53zg5.cloudfront.net/media/elearning/designation/UI_Engineer.jpg",
+    //     name: "UI Engineer",
+    //     date: "Completed on 27 Oct 2021",
+    //     star: "https://s3.ap-south-1.amazonaws.com/talrop.com-react-assets-bucket/assets/images/star.svg",
+    // },
     return (
         <Container>
             <Content>
@@ -114,34 +138,74 @@ function Tech() {
                 <Section>
                     <Items>
                         {items.map((item) => (
-                            <Item>
-                                <Left>
-                                    <img src={item.img} alt="img" />
+                            <Item
+                                className={
+                                    items.is_completed === "true"
+                                        ? "completed"
+                                        : "not-completed"
+                                }
+                            >
+                                <Left
+                                    className={
+                                        items.is_completed === "true"
+                                            ? "completed"
+                                            : "not-completed"
+                                    }
+                                >
+                                    <img src={item.image} alt="img" />
                                 </Left>
                                 <Right>
                                     <Heading>{item.name}</Heading>
-                                    <Paragraph>{item.date}</Paragraph>
+                                    {item.is_completed === "true" ? (
+                                        <Paragraph>
+                                            {item.date_updated}
+                                        </Paragraph>
+                                    ) : (
+                                        ""
+                                    )}
+
                                     <Stars>
                                         <Star>
-                                            <img src={item.star} alt="star" />
+                                            <img
+                                                src="https://s3.ap-south-1.amazonaws.com/talrop.com-react-assets-bucket/assets/images/star.svg"
+                                                alt="star"
+                                            />
                                         </Star>
                                         <Star>
-                                            <img src={item.star} alt="star" />
+                                            <img
+                                                src="https://s3.ap-south-1.amazonaws.com/talrop.com-react-assets-bucket/assets/images/star.svg"
+                                                alt="star"
+                                            />
                                         </Star>
                                         <Star>
-                                            <img src={item.star} alt="star" />
+                                            <img
+                                                src="https://s3.ap-south-1.amazonaws.com/talrop.com-react-assets-bucket/assets/images/star.svg"
+                                                alt="star"
+                                            />
                                         </Star>
                                         <Star>
-                                            <img src={item.star} alt="star" />
+                                            <img
+                                                src="https://s3.ap-south-1.amazonaws.com/talrop.com-react-assets-bucket/assets/images/star.svg"
+                                                alt="star"
+                                            />
                                         </Star>
                                         <Star>
-                                            <img src={item.star} alt="star" />
+                                            <img
+                                                src="https://s3.ap-south-1.amazonaws.com/talrop.com-react-assets-bucket/assets/images/star.svg"
+                                                alt="star"
+                                            />
                                         </Star>
                                         <Star>
-                                            <img src={item.star} alt="star" />
+                                            <img
+                                                src="https://s3.ap-south-1.amazonaws.com/talrop.com-react-assets-bucket/assets/images/star.svg"
+                                                alt="star"
+                                            />
                                         </Star>
                                         <Star>
-                                            <img src={item.star} alt="star" />
+                                            <img
+                                                src="https://s3.ap-south-1.amazonaws.com/talrop.com-react-assets-bucket/assets/images/star.svg"
+                                                alt="star"
+                                            />
                                         </Star>
                                     </Stars>
                                 </Right>
@@ -215,6 +279,7 @@ const Items = styled.div`
 `;
 const Item = styled.div`
     width: 43%;
+    cursor: pointer;
     background: rgb(232, 243, 253);
     padding: 8px 18px;
     border-radius: 5px;
@@ -244,6 +309,15 @@ const Item = styled.div`
         margin-right: 0;
         margin-bottom: 20px;
     }
+    &.not-completed {
+        cursor: not-allowed;
+        position: relative;
+        overflow: hidden;
+        filter: grayscale(1);
+    }
+    &.completed {
+        background: rgb(232, 243, 253);
+    }
 `;
 const Left = styled.div`
     width: 84px;
@@ -267,6 +341,9 @@ const Paragraph = styled.span`
     color: rgb(127, 127, 127);
     font-size: 13px;
     font-family: "gordita_regular";
+    &.not-completed {
+        display: none;
+    }
 `;
 const Stars = styled.div`
     display: flex;

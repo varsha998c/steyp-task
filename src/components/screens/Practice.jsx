@@ -1,8 +1,76 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { IoLayersOutline } from "react-icons/io5";
+import { practiceConfig } from "../../axiosConfig";
+import { Link } from "react-router-dom";
 
 function Practice() {
+    const [card, setCard] = useState([]);
+    const [item, setItem] = useState([]);
+    const [three, setThree] = useState([]);
+    // const [isView, setView] = useState(false);
+    let access_token = "CZXfKimWIMmsWGFoZilJ4Z85Mna5yk";
+    console.log("###############################", three);
+    useEffect(() => {
+        practiceConfig
+            .get("practices/upcoming-practices/tech-schooling/", {
+                headers: {
+                    Authorization: `Bearer ${access_token}`,
+                },
+            })
+            .then((res) => {
+                // console.log(res);
+                const { StatusCode, data } = res.data;
+                if (StatusCode === 6000) {
+                    setCard(data);
+                } else if (StatusCode === 6001) {
+                    console.log("6001");
+                }
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    }, []);
+    useEffect(() => {
+        practiceConfig
+            .get("practices/current-practice/tech-schooling/", {
+                headers: {
+                    Authorization: `Bearer ${access_token}`,
+                },
+            })
+            .then((res) => {
+                const { StatusCode, data } = res.data;
+                if (StatusCode === 6000) {
+                    setItem(data);
+                } else if (StatusCode === 6001) {
+                    console.log("600001", res);
+                }
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    }, []);
+    useEffect(() => {
+        practiceConfig
+            .get("practices/completed-practices/tech-schooling/", {
+                headers: {
+                    Authorization: `Bearer ${access_token}`,
+                },
+            })
+            .then((res) => {
+                const { StatusCode, data } = res.data;
+                if (StatusCode === 6000) {
+                    setItem(data);
+                    setThree(item.slice(0, 3));
+                } else if (StatusCode === 6001) {
+                    console.log("6001");
+                }
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    }, []);
+
     return (
         <Container>
             <Left>
@@ -19,30 +87,29 @@ function Practice() {
                         Currently, you have no practices to attend. Please go to
                         your next activity to unlock more practices.
                     </Description>
-                    <Button>Go to Learn dashboard</Button>
+                    <Button to="/dashboard">Go to Learn dashboard</Button>
                 </TopContainer>
                 <BottomContainer>
                     <h3>Upcoming Practices</h3>
-                    <Div>
-                        <ImageContainer>
-                            <img
-                                src="https://d3mbaugvr53zg5.cloudfront.net/media/learn/practices/practice/01_-_String_operations.jpg"
-                                alt="Image"
-                            />
-                        </ImageContainer>
-                        <ContentSection>
-                            <Heading>
-                                <span>#1</span>
-                                <h4>String Operations</h4>
-                            </Heading>
-                            <Developer>
-                                <Icon>
-                                    <IoLayersOutline />
-                                </Icon>
-                                <h6>Backend Developer</h6>
-                            </Developer>
-                        </ContentSection>
-                    </Div>
+                    {card.map((cards) => (
+                        <Div>
+                            <ImageContainer>
+                                <img src={cards.image} alt="Image" />
+                            </ImageContainer>
+                            <ContentSection>
+                                <Heading>
+                                    <span>#{cards.order_id}</span>
+                                    <h4>{cards.title}</h4>
+                                </Heading>
+                                <Developer>
+                                    <Icon>
+                                        <IoLayersOutline />
+                                    </Icon>
+                                    <h6>{cards.designation}</h6>
+                                </Developer>
+                            </ContentSection>
+                        </Div>
+                    ))}
                 </BottomContainer>
             </Left>
             <Right>
@@ -52,26 +119,28 @@ function Practice() {
                             <h2>Attended Practices</h2>
                             <ButtonDiv>View All</ButtonDiv>
                         </Top>
-                        <Card>
-                            <ImgContainer>
-                                <img
-                                    src="https://d3mbaugvr53zg5.cloudfront.net/media/learn/practices/practice/01_-_Create_Profile_Website_2tdILSb.jpg"
-                                    alt="Image"
-                                />
-                            </ImgContainer>
-                            <Mark>
-                                <img
-                                    src="https://s3.ap-south-1.amazonaws.com/talrop.com-react-assets-bucket/assets/images/star.svg"
-                                    alt=""
-                                />
-                                <span>10/10</span>
-                            </Mark>
-                            <Right>
-                                <Heading className="one">#1</Heading>
-                                <Title>Create a Profile Website</Title>
-                            </Right>
-                        </Card>
-                        <Card>
+                        {three.map((items) => (
+                            <Card>
+                                <ImgContainer>
+                                    <img src={items.image} alt="Image" />
+                                </ImgContainer>
+                                <Mark>
+                                    <img
+                                        src="https://s3.ap-south-1.amazonaws.com/talrop.com-react-assets-bucket/assets/images/star.svg"
+                                        alt="Image"
+                                    />
+                                    <span>{items.practice_score}/10</span>
+                                </Mark>
+                                <Right>
+                                    <Heading className="one">
+                                        #{items.order_id}
+                                    </Heading>
+                                    <Title>{items.title}</Title>
+                                </Right>
+                            </Card>
+                        ))}
+
+                        {/* <Card>
                             <ImgContainer>
                                 <img
                                     src="https://d3mbaugvr53zg5.cloudfront.net/media/learn/practices/practice/01_-_Create_Profile_Website_2tdILSb.jpg"
@@ -108,7 +177,7 @@ function Practice() {
                                 <Heading className="one">#3</Heading>
                                 <Title>Create a Profile Website</Title>
                             </Right>
-                        </Card>
+                        </Card> */}
                     </Header>
                 </ContentContainer>
             </Right>
@@ -157,7 +226,7 @@ const Description = styled.p`
     font-size: 14px;
     text-align: center;
 `;
-const Button = styled.div`
+const Button = styled(Link)`
     width: 164px;
     background-color: rgb(10, 129, 251);
     font-family: gordita_medium;
@@ -165,8 +234,9 @@ const Button = styled.div`
     color: rgb(255, 255, 255);
     border-radius: 10px;
     font-size: 14px;
-    /* text-align: center; */
+    cursor: pointer;
     margin: 0 auto;
+    display: block;
 `;
 const BottomContainer = styled.div`
     margin-top: 50px;
@@ -185,6 +255,12 @@ const Div = styled.div`
     justify-content: flex-start;
     align-items: center;
     border: 1px solid #f0f0f0;
+    opacity: 0.5;
+    cursor: not-allowed;
+    margin-bottom: 20px;
+    &:last-child {
+        margin-bottom: 0;
+    }
 `;
 const ContentSection = styled.div``;
 const Heading = styled.div`

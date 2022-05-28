@@ -1,91 +1,61 @@
-import React from "react";
+import React, { startTransition, useEffect, useState } from "react";
 import styled from "styled-components";
 import { IoLayersOutline } from "react-icons/io5";
 import { AiOutlineClockCircle } from "react-icons/ai";
+import { practiceConfig } from "../../axiosConfig";
 
 function NewContent() {
+    let access_token = "ZgFHzMlH6fij7lh8J6B8pHeaBtzoMA";
+    const [item, setItem] = useState([]);
+
+    useEffect(() => {
+        practiceConfig
+            .get("learn/new-content/skills/tech-schooling/", {
+                headers: {
+                    authorization: `Bearer ${access_token}`,
+                },
+            })
+            .then((res) => {
+                const { StatusCode, data } = res.data;
+                if (StatusCode === 6000) {
+                    setItem(data);
+                } else if (StatusCode === 6001) {
+                    console.log("6001");
+                }
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    }, []);
     return (
         <Content>
             <h2>UI Engineer</h2>
             <Items>
-                <Item>
-                    <Left>
-                        <img
-                            src="	https://d3mbaugvr53zg5.cloudfront.net/media/elearning/skill/gitlab.png"
-                            alt="img"
-                        />
-                    </Left>
-                    <Right>
-                        <Heading>Skill 3</Heading>
-                        <SubHeading>Git & GitLab</SubHeading>
-                        <BottomDiv>
-                            <Skill>
-                                <ImgContainer>
-                                    <IoLayersOutline />
-                                </ImgContainer>
-                                <span>1 Lesson</span>
-                            </Skill>
-                            <TimeContainer>
-                                <ImgContainer>
-                                    <AiOutlineClockCircle />
-                                </ImgContainer>
-                                <span>7 mins</span>
-                            </TimeContainer>
-                        </BottomDiv>
-                    </Right>
-                </Item>
-                <Item>
-                    <Left>
-                        <img
-                            src="https://d3mbaugvr53zg5.cloudfront.net/media/elearning/skill/Web_1920__14_7iYzsrg.jpg"
-                            alt="img"
-                        />
-                    </Left>
-                    <Right>
-                        <Heading>Skill 8</Heading>
-                        <SubHeading>React</SubHeading>
-                        <BottomDiv>
-                            <Skill>
-                                <ImgContainer>
-                                    <IoLayersOutline />
-                                </ImgContainer>
-                                <span>1 Lesson</span>
-                            </Skill>
-                            <TimeContainer>
-                                <ImgContainer>
-                                    <AiOutlineClockCircle />
-                                </ImgContainer>
-                                <span>7 mins</span>
-                            </TimeContainer>
-                        </BottomDiv>
-                    </Right>
-                </Item>
-                <Item>
-                    <Left>
-                        <img
-                            src="	https://d3mbaugvr53zg5.cloudfront.net/media/elearning/skill/gitlab.png"
-                            alt="img"
-                        />
-                    </Left>
-                    <Right>
-                        <Heading>Skill 3</Heading>
-                        <SubHeading>Git & GitLab</SubHeading>
-                        <BottomDiv>
-                            <Skill>
-                                <ImgContainer>
-                                    <IoLayersOutline />
-                                </ImgContainer>
-                                <span>1 Lesson</span>
-                            </Skill>
-                            <TimeContainer>
-                                <ImgContainer>
-                                    <AiOutlineClockCircle />
-                                </ImgContainer>
-                                <span>7 mins</span>
-                            </TimeContainer>
-                        </BottomDiv>
-                    </Right>
-                </Item>
+                {item.map((items) => (
+                    <Item>
+                        <Left>
+                            <img src={items.image} alt="image" />
+                        </Left>
+                        <Right>
+                            <Heading>Skill {items.order_id}</Heading>
+                            <SubHeading>{items.name}</SubHeading>
+                            <BottomDiv>
+                                <Skill>
+                                    <ImgContainer>
+                                        <IoLayersOutline />
+                                    </ImgContainer>
+                                    <span>{items.lessons} Lessons</span>
+                                </Skill>
+                                <TimeContainer>
+                                    <ImgContainer>
+                                        <AiOutlineClockCircle />
+                                    </ImgContainer>
+                                    <span>{items.duration}</span>
+                                </TimeContainer>
+                            </BottomDiv>
+                        </Right>
+                    </Item>
+                ))}
             </Items>
         </Content>
     );
@@ -95,15 +65,17 @@ export default NewContent;
 const Content = styled.div`
     h2 {
         font-size: 20px;
-        color: rgb(24, 72, 76);
+        color: #000;
         margin-top: 30px;
-        font-family: gordita_regular;
+        font-family: gordita_medium;
     }
 `;
 const Items = styled.div`
     display: flex;
     width: 100%;
+    flex-wrap: wrap;
     max-height: 70vh;
+    justify-content: space-between;
 `;
 const Item = styled.div`
     width: 29%;
@@ -112,10 +84,10 @@ const Item = styled.div`
     padding: 20px 18px;
     display: flex;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     justify-content: space-between;
-    margin-right: 25px;
-    &:last-child {
+    margin-right: 15px;
+    &:nth-child(3) {
         margin-right: 0;
     }
 `;

@@ -1,16 +1,40 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import { performConfig, practiceConfig } from "../../axiosConfig";
 
 function Performance() {
+    const [item, setItem] = useState([]);
+    let access_token = "ZgFHzMlH6fij7lh8J6B8pHeaBtzoMA";
+    useEffect(() => {
+        practiceConfig
+            .get("learn/student-performance/tech-schooling/", {
+                headers: {
+                    Authorization: `Bearer ${access_token}`,
+                },
+            })
+            .then((res) => {
+                const { StatusCode, data } = res.data;
+                if (StatusCode === 6000) {
+                    setItem(data);
+                    console.log("22dddddddd2", res);
+                } else if (StatusCode === 6001) {
+                    console.log("res");
+                }
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    }, []);
+
     return (
         <Container>
             <Items>
                 <Left>Lessons</Left>
-                <Right>119</Right>
+                <Right>{item.lessons_count}</Right>
             </Items>
             <Items>
                 <Left>Topics</Left>
-                <Right>684</Right>
+                <Right>{item.topics_count}</Right>
             </Items>
             <Proffesions>
                 <ImgContainer>
@@ -21,7 +45,7 @@ function Performance() {
                 </ImgContainer>
                 <Topic>
                     <h5>Professions</h5>
-                    <span>2</span>
+                    <span>{item.designations_count}</span>
                 </Topic>
             </Proffesions>
 
@@ -34,9 +58,10 @@ function Performance() {
                 </ImgContainer>
                 <Topic>
                     <h5>Skills</h5>
-                    <span>11</span>
+                    <span>{item.skills_count}</span>
                 </Topic>
             </Proffesions>
+
             <Proffesions>
                 <ImgContainer>
                     <img
@@ -46,7 +71,7 @@ function Performance() {
                 </ImgContainer>
                 <Topic>
                     <h5>Practices</h5>
-                    <span>38</span>
+                    <span>{item.practices_count}</span>
                 </Topic>
             </Proffesions>
             <Proffesions>
@@ -58,7 +83,7 @@ function Performance() {
                 </ImgContainer>
                 <Topic>
                     <h5>Assessments</h5>
-                    <span>20</span>
+                    <span>{item.assessments_count}</span>
                 </Topic>
             </Proffesions>
             <Proffesions>
@@ -70,7 +95,7 @@ function Performance() {
                 </ImgContainer>
                 <Topic>
                     <h5>Workshops</h5>
-                    <span>38</span>
+                    <span>{item.workshops_count}</span>
                 </Topic>
             </Proffesions>
             <Proffesions>
@@ -82,7 +107,7 @@ function Performance() {
                 </ImgContainer>
                 <Topic>
                     <h5>Premium Assists</h5>
-                    <span>0</span>
+                    <span>{item.support_chats_count}</span>
                 </Topic>
             </Proffesions>
         </Container>
