@@ -2,13 +2,12 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Performance from "./Performance";
 import "../../assets/css/style.css";
-import { learnConfig, practiceConfig } from "../../axiosConfig";
-import { logDOM } from "@testing-library/react";
-import axios from "axios";
-import MenusContainer from "./MenusContainer";
+import { practiceConfig } from "../../axiosConfig";
+import { css } from "@emotion/react";
 
 function Tech() {
     const [items, setItems] = useState([]);
+    const [loader, setLoader] = useState(false);
     let access_token = "ZgFHzMlH6fij7lh8J6B8pHeaBtzoMA";
 
     useEffect(() => {
@@ -23,6 +22,7 @@ function Tech() {
                     const { StatusCode, data } = res.data;
                     if (StatusCode === 6000) {
                         setItems(data);
+                        setLoader(true);
                     } else if (StatusCode === 6001) {
                         console.log("res");
                     }
@@ -127,6 +127,7 @@ function Tech() {
                             </Item>
                         ))}
                     </Items>
+
                     <Marks>
                         <Performance />
                     </Marks>
@@ -137,6 +138,11 @@ function Tech() {
 }
 
 export default Tech;
+const override = css`
+    display: block;
+    margin: 0 auto;
+    border-color: red;
+`;
 const Container = styled.div`
     h2 {
         text-transform: capitalize;
