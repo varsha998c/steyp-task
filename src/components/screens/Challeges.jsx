@@ -36,9 +36,10 @@ function Challeges() {
 export default Challeges;
 const Container = styled.div`
     height: 90vh;
-    overflow-y: scroll;
-    margin-top: 61px;
-    margin-left: 238px;
+
+    margin-top: 100px;
+    width: 92%;
+    margin-left: 50px;
     padding: 10px 20px 0 30px;
     display: flex;
     flex-direction: column;
@@ -47,7 +48,10 @@ const Container = styled.div`
         font-family: gordita_medium;
         color: rgb(52, 52, 52);
         text-align: left;
-        margin-top: -20px;
+        margin-top: 30px;
+    }
+    ::-webkit-scrollbar {
+        display: none;
     }
 `;
 const Top = styled.div`
@@ -74,7 +78,7 @@ const Div = styled.div`
     margin-right: 10px;
     padding: 70px 0px 50px;
     h2 {
-        font-size: 32px;
+        font-size: 35px;
         font-family: gordita_medium;
         margin-bottom: 5px;
     }

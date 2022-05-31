@@ -10,128 +10,32 @@ import MenusContainer from "./MenusContainer";
 function Tech() {
     const [items, setItems] = useState([]);
     let access_token = "ZgFHzMlH6fij7lh8J6B8pHeaBtzoMA";
+
     useEffect(() => {
-        practiceConfig
-            .get("learn/achievements/tech-schooling/", {
-                headers: {
-                    Authorization: `Bearer ${access_token}`,
-                },
-            })
-            .then((res) => {
-                const { StatusCode, data } = res.data;
-                if (StatusCode === 6000) {
-                    setItems(data);
-                    console.log("22dddddddd2", res);
-                } else if (StatusCode === 6001) {
-                    console.log("res");
-                }
-            })
-            .catch((err) => {
-                console.log(err);
-            });
+        const fetchAchievements = () => {
+            practiceConfig
+                .get("learn/achievements/tech-schooling/", {
+                    headers: {
+                        Authorization: `Bearer ${access_token}`,
+                    },
+                })
+                .then((res) => {
+                    const { StatusCode, data } = res.data;
+                    if (StatusCode === 6000) {
+                        setItems(data);
+                    } else if (StatusCode === 6001) {
+                        console.log("res");
+                    }
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        };
+        fetchAchievements();
     }, []);
 
-    // {
-    //     id: 1,
-    //     img: "https://d3mbaugvr53zg5.cloudfront.net/media/elearning/designation/UI_Engineer.jpg",
-    //     name: "UI Engineer",
-    //     date: "Completed on 27 Oct 2021",
-    //     star: "https://s3.ap-south-1.amazonaws.com/talrop.com-react-assets-bucket/assets/images/star.svg",
-    // },
-    // {
-    //     id: 2,
-    //     img: "https://d3mbaugvr53zg5.cloudfront.net/media/elearning/designation/UI_Engineer.jpg",
-    //     name: "Backend Developer",
-    //     date: "Completed on 27 Oct 2021",
-    //     star: "https://s3.ap-south-1.amazonaws.com/talrop.com-react-assets-bucket/assets/images/star.svg",
-    // },
-    // {
-    //     id: 3,
-    //     img: "https://d3mbaugvr53zg5.cloudfront.net/media/elearning/designation/UI_Engineer.jpg",
-    //     name: "DevOps Engineer",
-    //     date: "Completed on 27 Oct 2021",
-    //     star: "https://s3.ap-south-1.amazonaws.com/talrop.com-react-assets-bucket/assets/images/star.svg",
-    // },
-    // {
-    //     id: 4,
-    //     img: "https://d3mbaugvr53zg5.cloudfront.net/media/elearning/designation/UI_Engineer.jpg",
-    //     name: "Web Application Developer",
-    //     date: "Completed on 27 Oct 2021",
-    //     star: "https://s3.ap-south-1.amazonaws.com/talrop.com-react-assets-bucket/assets/images/star.svg",
-    // },
-    // {
-    //     id: 5,
-    //     img: "https://d3mbaugvr53zg5.cloudfront.net/media/elearning/designation/UI_Engineer.jpg",
-    //     name: "Mobile Application Developer",
-    //     date: "Completed on 27 Oct 2021",
-    //     star: "https://s3.ap-south-1.amazonaws.com/talrop.com-react-assets-bucket/assets/images/star.svg",
-    // },
-    // {
-    //     id: 6,
-    //     img: "https://d3mbaugvr53zg5.cloudfront.net/media/elearning/designation/UI_Engineer.jpg",
-    //     name: "Data Scientist",
-    //     date: "Completed on 27 Oct 2021",
-    //     star: "https://s3.ap-south-1.amazonaws.com/talrop.com-react-assets-bucket/assets/images/star.svg",
-    // },
-    // {
-    //     id: 7,
-    //     img: "https://d3mbaugvr53zg5.cloudfront.net/media/elearning/designation/UI_Engineer.jpg",
-    //     name: "Machine Learning Engineer",
-    //     date: "Completed on 27 Oct 2021",
-    //     star: "https://s3.ap-south-1.amazonaws.com/talrop.com-react-assets-bucket/assets/images/star.svg",
-    // },
-    // {
-    //     id: 8,
-    //     img: "https://d3mbaugvr53zg5.cloudfront.net/media/elearning/designation/UI_Engineer.jpg",
-    //     name: "AI Engineer",
-    //     date: "Completed on 27 Oct 2021",
-    //     star: "https://s3.ap-south-1.amazonaws.com/talrop.com-react-assets-bucket/assets/images/star.svg",
-    // },
-    // {
-    //     id: 9,
-    //     img: "https://d3mbaugvr53zg5.cloudfront.net/media/elearning/designation/UI_Engineer.jpg",
-    //     name: "UI Engineer",
-    //     date: "Completed on 27 Oct 2021",
-    //     star: "https://s3.ap-south-1.amazonaws.com/talrop.com-react-assets-bucket/assets/images/star.svg",
-    // },
-    // {
-    //     id: 10,
-    //     img: "https://d3mbaugvr53zg5.cloudfront.net/media/elearning/designation/UI_Engineer.jpg",
-    //     name: "UI Engineer",
-    //     date: "Completed on 27 Oct 2021",
-    //     star: "https://s3.ap-south-1.amazonaws.com/talrop.com-react-assets-bucket/assets/images/star.svg",
-    // },
-    // {
-    //     id: 11,
-    //     img: "https://d3mbaugvr53zg5.cloudfront.net/media/elearning/designation/UI_Engineer.jpg",
-    //     name: "UI Engineer",
-    //     date: "Completed on 27 Oct 2021",
-    //     star: "https://s3.ap-south-1.amazonaws.com/talrop.com-react-assets-bucket/assets/images/star.svg",
-    // },
-    // {
-    //     id: 12,
-    //     img: "https://d3mbaugvr53zg5.cloudfront.net/media/elearning/designation/UI_Engineer.jpg",
-    //     name: "UI Engineer",
-    //     date: "Completed on 27 Oct 2021",
-    //     star: "https://s3.ap-south-1.amazonaws.com/talrop.com-react-assets-bucket/assets/images/star.svg",
-    // },
-    // {
-    //     id: 13,
-    //     img: "https://d3mbaugvr53zg5.cloudfront.net/media/elearning/designation/UI_Engineer.jpg",
-    //     name: "UI Engineer",
-    //     date: "Completed on 27 Oct 2021",
-    //     star: "https://s3.ap-south-1.amazonaws.com/talrop.com-react-assets-bucket/assets/images/star.svg",
-    // },
-    // {
-    //     id: 14,
-    //     img: "https://d3mbaugvr53zg5.cloudfront.net/media/elearning/designation/UI_Engineer.jpg",
-    //     name: "UI Engineer",
-    //     date: "Completed on 27 Oct 2021",
-    //     star: "https://s3.ap-south-1.amazonaws.com/talrop.com-react-assets-bucket/assets/images/star.svg",
-    // },
     return (
         <Container>
-            {/* <MenusContainer /> */}
             <Content>
                 <Headings>
                     <h3>Achievements</h3>
@@ -141,15 +45,16 @@ function Tech() {
                     <Items>
                         {items.map((item) => (
                             <Item
+                                key={item.id}
                                 className={
-                                    items.is_completed === "true"
+                                    item.is_completed
                                         ? "completed"
                                         : "not-completed"
                                 }
                             >
                                 <Left
                                     className={
-                                        items.is_completed === "true"
+                                        item.is_completed === "true"
                                             ? "completed"
                                             : "not-completed"
                                     }
@@ -158,7 +63,7 @@ function Tech() {
                                 </Left>
                                 <Right>
                                     <Heading>{item.name}</Heading>
-                                    {item.is_completed === "true" ? (
+                                    {item.is_completed ? (
                                         <Paragraph>
                                             {item.date_updated}
                                         </Paragraph>
@@ -271,17 +176,17 @@ const Li = styled.div`
     }
 `;
 const Content = styled.div`
-    width: 81%;
-    margin-left: 264px;
+    width: 95%;
+    margin-left: 76px;
 `;
 const Items = styled.div`
     display: flex;
     flex-wrap: wrap;
-    width: 68%;
+    width: 69%;
     max-height: 70vh;
 `;
 const Item = styled.div`
-    width: 43%;
+    width: 44%;
     cursor: pointer;
     background: rgb(232, 243, 253);
     padding: 8px 18px;
@@ -330,8 +235,7 @@ const Left = styled.div`
     }
 `;
 const Right = styled.div`
-    margin-left: 15px;
-    width: 240px;
+    width: 290px;
 `;
 const Heading = styled.h4`
     margin: 0;
@@ -340,10 +244,10 @@ const Heading = styled.h4`
 `;
 
 const Paragraph = styled.span`
-    margin: 0;
     color: rgb(127, 127, 127);
     font-size: 13px;
     font-family: "gordita_regular";
+    margin: 10px 0;
     &.not-completed {
         display: none;
     }

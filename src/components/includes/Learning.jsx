@@ -7,31 +7,34 @@ import { practiceConfig } from "../../axiosConfig";
 
 function Learning() {
     let access_token = "ZgFHzMlH6fij7lh8J6B8pHeaBtzoMA";
-    useEffect(() => {
-        practiceConfig
-            .get("learn/designations/tech-schooling/", {
-                headers: {
-                    Authorization: `Bearer ${access_token}`,
-                },
-            })
-            .then((res) => {
-                // const { StatusCode, data } = res.data;
-                // if (StatusCode === 6000) {
-                //     setItem(data);
-                // }
-
-                if (res.data.StatusCode === 6000) {
-                    setItem(res.data.data);
-                } else if (res.data.StatusCode === 6001) {
-                    console.log("6001");
-                }
-                console.log(res, "true");
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-    }, []);
     const [item, setItem] = useState([]);
+    useEffect(() => {
+        const fetchTechSchooling = () => {
+            practiceConfig
+                .get("learn/designations/tech-schooling/", {
+                    headers: {
+                        Authorization: `Bearer ${access_token}`,
+                    },
+                })
+                .then((res) => {
+                    // const { StatusCode, data } = res.data;
+                    // if (StatusCode === 6000) {
+                    //     setItem(data);
+                    // }
+
+                    if (res.data.StatusCode === 6000) {
+                        setItem(res.data.data);
+                    } else if (res.data.StatusCode === 6001) {
+                        console.log("6001");
+                    }
+                    console.log(res, "true");
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        };
+        fetchTechSchooling();
+    }, []);
 
     return (
         <Container>
@@ -112,13 +115,13 @@ const Container = styled.div`
 `;
 
 const Content = styled.div`
-    width: 80%;
-    margin-left: 270px;
+    width: 95%;
+    margin-left: 76px;
 `;
 const Items = styled.div`
     display: flex;
     flex-wrap: wrap;
-    width: 100%;
+    width: 98%;
     justify-content: space-between;
 `;
 const Item = styled.div`

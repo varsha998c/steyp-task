@@ -12,36 +12,49 @@ function Workshop() {
 
     let access_token = "ZgFHzMlH6fij7lh8J6B8pHeaBtzoMA";
     useEffect(() => {
-        practiceConfig
-            .get("workshops/completed-workshops/tech-schooling", {
-                headers: {
-                    authorization: `Bearer ${access_token}`,
-                },
-            })
-            .then((res) => {
-                const { StatusCode, data } = res.data;
-                if (StatusCode === 6000) {
-                    setItem(data);
-                    setThree(item.slice(0, 3));
-                } else if (StatusCode === 6001) {
-                    console.log("6001");
-                }
-            })
-            .catch((err) => {
-                console.log(err);
-            });
+        const fetchCompletedWorkshop = () => {
+            practiceConfig
+                .get("workshops/completed-workshops/tech-schooling", {
+                    headers: {
+                        authorization: `Bearer ${access_token}`,
+                    },
+                })
+                .then((res) => {
+                    const { StatusCode, data } = res.data;
+                    if (StatusCode === 6000) {
+                        setItem(data);
+                        setThree(item.slice(0, 3));
+                    } else if (StatusCode === 6001) {
+                        console.log("6001");
+                    }
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        };
+        fetchCompletedWorkshop();
     }, []);
     useEffect(() => {
-        learnConfig
-            .get("workshops/upcoming-workshops/tech-schooling/")
-            .then((res) => {
-                const { StatusCode, data } = res.data;
-                if (StatusCode === 6000) {
-                    setData(data);
-                } else if (StatusCode === 6001) {
-                    console.log("6001");
-                }
-            });
+        const fetchUpcomingWorkshop = () => {
+            learnConfig
+                .get("workshops/upcoming-workshops/tech-schooling/", {
+                    headers: {
+                        authorization: `Bearer ${access_token}`,
+                    },
+                })
+                .then((res) => {
+                    const { StatusCode, data } = res.data;
+                    if (StatusCode === 6000) {
+                        setData(data);
+                    } else if (StatusCode === 6001) {
+                        console.log("6001");
+                    }
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        };
+        fetchUpcomingWorkshop();
     }, []);
 
     return (
@@ -60,7 +73,7 @@ function Workshop() {
                         Currently, you have no workshops to attend. Please go to
                         your next activity to unlock more workshops.
                     </Description>
-                    <Button to="/">Go to Learn dashboard</Button>
+                    <Button to="/tech-schooling">Go to Learn dashboard</Button>
                 </TopContainer>
                 <BottomContainer>
                     <h3>Upcoming Workshops</h3>
@@ -99,7 +112,9 @@ function Workshop() {
                     <Header>
                         <Top>
                             <h2>Completed Workshops</h2>
-                            <ButtonDiv>View All</ButtonDiv>
+                            <ButtonDiv to="completed-workshops/">
+                                View All
+                            </ButtonDiv>
                         </Top>
                         {three.map((items) => (
                             <Card>
@@ -140,8 +155,8 @@ export default Workshop;
 const Container = styled.div`
     display: flex;
     justify-content: space-between;
-    width: 80%;
-    margin-left: 270px;
+    width: 93%;
+    margin: 0px 20px 0 76px;
 `;
 const Left = styled.div`
     width: 41%;
@@ -221,7 +236,7 @@ const Heading = styled.div`
         color: rgb(65, 174, 118);
         font-family: gordita_medium;
         font-size: 18px;
-        width: 230px;
+        width: 250px;
         margin-bottom: 5px;
         display: flex;
         align-items: center;
@@ -254,19 +269,21 @@ const Right = styled.div`
 const ContentContainer = styled.div`
     background-color: rgb(250, 250, 250);
     padding: 30px 20px;
-    margin-top: 38px;
+    margin-top: 20px;
 `;
 const Header = styled.div``;
 const Top = styled.div`
     display: flex;
     justify-content: space-between;
+    width: 95%;
     h2 {
         color: rgb(30, 78, 82);
         font-size: 20px;
         font-family: gordita_regular;
+        margin-bottom: 20px;
     }
 `;
-const ButtonDiv = styled.div`
+const ButtonDiv = styled(Link)`
     color: rgb(33, 150, 243);
     font-family: gordita_medium;
     font-size: 16px;

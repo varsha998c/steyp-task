@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Avatar from "react-avatar";
 import { Outlet } from "react-router-dom";
 
-function Header() {
+function Header({ setClick }) {
     return (
         <>
             <Container>
@@ -51,7 +51,7 @@ function Header() {
                                 <Avatar name="Varsha" size="60" />
                             </Profile>
                             <h4>Varsha</h4>
-                            <DropDown>
+                            <DropDown onClick={() => setClick((prev) => !prev)}>
                                 <Img
                                     src="https://s3.ap-south-1.amazonaws.com/talrop.com-react-assets-bucket/assets/images/polygon.svg"
                                     alt="dropdown"

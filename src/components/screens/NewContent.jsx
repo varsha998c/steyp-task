@@ -63,8 +63,8 @@ function NewContent() {
 
 export default NewContent;
 const Content = styled.div`
-    width: 80%;
-    margin-left: 270px;
+    width: 93%;
+    margin: 0 20px 20px 76px;
     h2 {
         font-size: 20px;
         color: #000;
@@ -81,16 +81,19 @@ const Items = styled.div`
     justify-content: space-between;
 `;
 const Item = styled.div`
-    width: 29%;
+    width: 46%;
     border-radius: 7px;
     background: rgb(249, 249, 249);
     padding: 20px 18px;
     display: flex;
     align-items: center;
     margin-bottom: 30px;
-    justify-content: space-between;
+    justify-content: flex-start;
     margin-right: 15px;
-    &:nth-child(3) {
+    &:nth-child(2) {
+        margin-right: 0;
+    }
+    &:nth-child(4) {
         margin-right: 0;
     }
 `;

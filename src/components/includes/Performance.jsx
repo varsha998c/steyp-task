@@ -122,7 +122,7 @@ const Items = styled.div`
     border-radius: 5px;
     display: flex;
     align-items: center;
-    width: 358px;
+    width: 380px;
     justify-content: space-between;
     margin-bottom: 10px;
 `;
@@ -145,6 +145,7 @@ const Proffesions = styled.div`
     padding: 10px 16px;
     border-radius: 5px;
     margin-bottom: 10px;
+    width: 380px;
     &:last-child {
         margin-bottom: 0;
     }

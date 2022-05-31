@@ -7,109 +7,141 @@ import { Link } from "react-router-dom";
 function Practice() {
     const [card, setCard] = useState([]);
     const [item, setItem] = useState([]);
+    const [currentPractice, setCurrentPracice] = useState([]);
     const [three, setThree] = useState([]);
     // const [isView, setView] = useState(false);
     let access_token = "CZXfKimWIMmsWGFoZilJ4Z85Mna5yk";
     console.log("###############################", three);
     useEffect(() => {
-        practiceConfig
-            .get("practices/upcoming-practices/tech-schooling/", {
-                headers: {
-                    Authorization: `Bearer ${access_token}`,
-                },
-            })
-            .then((res) => {
-                // console.log(res);
-                const { StatusCode, data } = res.data;
-                if (StatusCode === 6000) {
-                    setCard(data);
-                } else if (StatusCode === 6001) {
-                    console.log("6001");
-                }
-            })
-            .catch((err) => {
-                console.log(err);
-            });
+        const fetchUpcomingPractices = () => {
+            practiceConfig
+                .get("practices/upcoming-practices/tech-schooling/", {
+                    headers: {
+                        Authorization: `Bearer ${access_token}`,
+                    },
+                })
+                .then((res) => {
+                    // console.log(res);
+                    const { StatusCode, data } = res.data;
+                    if (StatusCode === 6000) {
+                        setCard(data[0]);
+                        console.log(
+                            data[0],
+                            "------------------------------------------"
+                        );
+                    } else if (StatusCode === 6001) {
+                        console.log("6001");
+                    }
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        };
+        fetchUpcomingPractices();
+    }, []);
+
+    useEffect(() => {
+        const fetchCurrentPractices = () => {
+            practiceConfig
+                .get("practices/current-practice/tech-schooling/", {
+                    headers: {
+                        Authorization: `Bearer ${access_token}`,
+                    },
+                })
+                .then((res) => {
+                    const { StatusCode, data } = res.data;
+                    if (StatusCode === 6001) {
+                        setCurrentPracice(data);
+                        console.log(
+                            data,
+                            "-------------------------------------"
+                        );
+                    } else if (StatusCode === 6000) {
+                    }
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        };
+        fetchCurrentPractices();
     }, []);
     useEffect(() => {
-        practiceConfig
-            .get("practices/current-practice/tech-schooling/", {
-                headers: {
-                    Authorization: `Bearer ${access_token}`,
-                },
-            })
-            .then((res) => {
-                const { StatusCode, data } = res.data;
-                if (StatusCode === 6000) {
-                    setItem(data);
-                } else if (StatusCode === 6001) {
-                    console.log("600001", res);
-                }
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-    }, []);
-    useEffect(() => {
-        practiceConfig
-            .get("practices/completed-practices/tech-schooling/", {
-                headers: {
-                    Authorization: `Bearer ${access_token}`,
-                },
-            })
-            .then((res) => {
-                const { StatusCode, data } = res.data;
-                if (StatusCode === 6000) {
-                    setItem(data);
-                    setThree(item.slice(0, 3));
-                } else if (StatusCode === 6001) {
-                    console.log("6001");
-                }
-            })
-            .catch((err) => {
-                console.log(err);
-            });
+        const fetchCompletedPractices = () => {
+            practiceConfig
+                .get("practices/completed-practices/tech-schooling/", {
+                    headers: {
+                        Authorization: `Bearer ${access_token}`,
+                    },
+                })
+                .then((res) => {
+                    const { StatusCode, data } = res.data;
+                    if (StatusCode === 6000) {
+                        setItem(data);
+                        console.log(
+                            item,
+                            "=============================items========================"
+                        );
+                        setThree(item.slice(0, 3));
+                        console.log(
+                            three,
+                            "============================three =items========================"
+                        );
+                    } else if (StatusCode === 6001) {
+                        console.log("6001");
+                    }
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        };
+        fetchCompletedPractices();
     }, []);
 
     return (
         <Container>
             <Left>
-                <TopContainer>
-                    <h3>Your Next Practice</h3>
-                    <ImgeContainer>
-                        <img
-                            src="https://s3.ap-south-1.amazonaws.com/talrop.com-react-assets-bucket/assets/images/practices/assets/nextemptybg.svg"
-                            alt="Image"
-                        />
-                    </ImgeContainer>
-                    <SubHeading>There are no practices active</SubHeading>
-                    <Description>
-                        Currently, you have no practices to attend. Please go to
-                        your next activity to unlock more practices.
-                    </Description>
-                    <Button to="/">Go to Learn dashboard</Button>
-                </TopContainer>
+                {currentPractice.length === 0 ? (
+                    <TopContainer>
+                        <h3>Your Next Practice</h3>
+                        <ImgeContainer>
+                            <img
+                                src="https://s3.ap-south-1.amazonaws.com/talrop.com-react-assets-bucket/assets/images/practices/assets/nextemptybg.svg"
+                                alt="Image"
+                            />
+                        </ImgeContainer>
+                        <SubHeading>There are no practices active</SubHeading>
+                        <Description>
+                            Currently, you have no practices to attend. Please
+                            go to your next activity to unlock more practices.
+                        </Description>
+                        <Button to="/tech-schooling">
+                            Go to Learn dashboard
+                        </Button>
+                    </TopContainer>
+                ) : (
+                    ""
+                )}
                 <BottomContainer>
                     <h3>Upcoming Practices</h3>
-                    {card.map((cards) => (
-                        <Div>
-                            <ImageContainer>
-                                <img src={cards.image} alt="Image" />
-                            </ImageContainer>
-                            <ContentSection>
-                                <Heading>
-                                    <span>#{cards.order_id}</span>
-                                    <h4>{cards.title}</h4>
-                                </Heading>
-                                <Developer>
-                                    <Icon>
-                                        <IoLayersOutline />
-                                    </Icon>
-                                    <h6>{cards.designation}</h6>
-                                </Developer>
-                            </ContentSection>
-                        </Div>
-                    ))}
+                    {/* {card.map((cards) => ( */}
+                    <Div>
+                        <ImageContainer>
+                            <img src={card.image} alt="Image" />
+                        </ImageContainer>
+                        <ContentSection>
+                            <Heading>
+                                <span>#{card.order_id}</span>
+                                <h4>{card.title}</h4>
+                            </Heading>
+                            <Developer>
+                                <Icon>
+                                    <IoLayersOutline />
+                                </Icon>
+                                <h6>{card.designation}</h6>
+                            </Developer>
+                        </ContentSection>
+                    </Div>
+                    {/* ))} */}
                 </BottomContainer>
             </Left>
             <Right>
@@ -117,7 +149,9 @@ function Practice() {
                     <Header>
                         <Top>
                             <h2>Attended Practices</h2>
-                            <ButtonDiv>View All</ButtonDiv>
+                            <ButtonDiv to="completed-practices/">
+                                View All
+                            </ButtonDiv>
                         </Top>
                         {three.map((items) => (
                             <Card>
@@ -133,7 +167,7 @@ function Practice() {
                                 </Mark>
                                 <Right>
                                     <Heading className="one">
-                                        #{items.order_id}
+                                        #{items.auto_id}
                                     </Heading>
                                     <Title>{items.title}</Title>
                                 </Right>
@@ -150,11 +184,11 @@ export default Practice;
 const Container = styled.div`
     display: flex;
     justify-content: space-between;
-    width: 80%;
-    margin-left: 270px;
+    width: 95%;
+    margin-left: 76px;
 `;
 const Left = styled.div`
-    width: 45%;
+    width: 50%;
     display: flex;
     flex-direction: column;
 `;
@@ -254,6 +288,7 @@ const ContentContainer = styled.div`
     background-color: rgb(250, 250, 250);
     padding: 30px 20px;
     margin-top: 60px;
+    width: 90%;
 `;
 const Header = styled.div``;
 const Top = styled.div`
@@ -265,7 +300,7 @@ const Top = styled.div`
         font-family: gordita_regular;
     }
 `;
-const ButtonDiv = styled.div`
+const ButtonDiv = styled(Link)`
     color: rgb(33, 150, 243);
     font-family: gordita_medium;
     font-size: 16px;

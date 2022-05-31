@@ -7,7 +7,7 @@ function SideBar() {
     return (
         <Section>
             <Wrapper>
-                <Content>
+                <Content className="one">
                     <TopContainer>
                         <ImgContainer>
                             <img
@@ -48,7 +48,7 @@ function SideBar() {
                     </MiddleContainer>
                 </Content>
                 <Div>
-                    <BottomContainer>
+                    <BottomContainer className="socialmedia">
                         <Image>
                             <ImageContainer>
                                 <img
@@ -134,6 +134,12 @@ const Section = styled.div`
     &:hover {
         width: 238px;
     }
+    &:hover .socialmedia {
+        display: flex;
+    }
+    &:hover .one {
+        height: 430px;
+    }
     &:hover a {
         display: block;
     }
@@ -143,7 +149,7 @@ const Wrapper = styled.div`
     flex-direction: column;
 `;
 const Content = styled.div`
-    height: 430px;
+    height: 600px;
     display: flex;
     flex-direction: column;
     justify-content: unset;
@@ -155,6 +161,7 @@ const TopContainer = styled.div`
     align-items: center;
     justify-content: flex-start;
     cursor: pointer;
+    margin-bottom: 20px;
     h4 {
         margin-left: 20px;
         font-family: "gordita_medium";
@@ -198,6 +205,7 @@ const One = styled.div`
     justify-content: flex-start;
     cursor: pointer;
     padding: 10px 0px;
+    margin-bottom: 15px;
     h4 {
         margin-left: 20px;
         font-family: "gordita_medium";
@@ -214,6 +222,8 @@ const Two = styled.div`
     justify-content: flex-start;
     cursor: pointer;
     padding: 10px 0px;
+    margin-bottom: 15px;
+
     h4 {
         margin-left: 20px;
         font-family: "gordita_medium";
@@ -242,7 +252,7 @@ const Three = styled.div`
 `;
 const BottomContainer = styled.div`
     padding: 18px 20px;
-    display: flex;
+    display: none;
     justify-content: space-between;
     align-items: center;
     margin-top: 100px;
@@ -279,20 +289,6 @@ const ButtonDiv = styled.div`
     cursor: pointer;
     padding: 13px;
 `;
-// const H4 = styled(Link)`
-//     margin-left: 20px;
-//     font-family: "gordita_medium";
-//     font-size: 14px;
-//     color: #333;
-//     &:hover {
-//         color: #5dc66a;
-//     }
-//     &.explore {
-//         color: #fff;
-//         margin-right: 3px;
-//     }
-//     display: none;
-// `;
 const Arrow = styled.div`
     width: 15px;
     img {
@@ -301,5 +297,5 @@ const Arrow = styled.div`
     }
 `;
 const Div = styled.div`
-    margin-top: 72px;
+    margin-top: 79px;
 `;

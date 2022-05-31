@@ -102,8 +102,8 @@ const Container = styled.div`
     background-color: rgb(249, 249, 251);
     padding: 25px;
     margin-top: 30px;
-    width: 77%;
-    margin-left: 270px;
+    width: 90%;
+    margin: 0 20px 20px 76px;
 `;
 const Item = styled.div`
     display: flex;
@@ -113,12 +113,13 @@ const Item = styled.div`
     border-radius: 10px;
     height: 220px;
     margin-bottom: 20px;
+    width: 96%;
     &:last-child {
         margin-bottom: 0;
     }
 `;
 const ImgContainer = styled.div`
-    width: 300px;
+    width: 250px;
     margin-right: 25px;
     border-radius: 5px;
     overflow: hidden;

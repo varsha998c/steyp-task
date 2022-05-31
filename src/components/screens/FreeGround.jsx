@@ -1,8 +1,36 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { IoIosSearch } from "react-icons/io";
+import { practiceConfig } from "../../axiosConfig";
 
 function FreeGround() {
+    let access_token = "CZXfKimWIMmsWGFoZilJ4Z85Mna5yk";
+    const [lessons, setLessons] = useState([]);
+    useEffect(() => {
+        const fetchFreeground = () => {
+            practiceConfig
+                .get("learn/free-ground/", {
+                    headers: {
+                        Authorization: `Bearer ${access_token}`,
+                    },
+                })
+                .then((res) => {
+                    // console.log(res);
+                    const { StatusCode, data } = res.data;
+                    if (StatusCode === 6000) {
+                        setLessons(data);
+                        console.log("#############", data);
+                    } else if (StatusCode === 6001) {
+                        console.log("6001");
+                    }
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        };
+        fetchFreeground();
+    }, []);
+
     return (
         <Container>
             <Top>
@@ -24,241 +52,22 @@ function FreeGround() {
                 </Right>
             </Top>
             <BottomContainer>
-                <Item>
-                    <Heading>Devices</Heading>
-                    <Cards>
-                        <Card>
-                            <ImgContainer>
-                                <img
-                                    src="https://d3mbaugvr53zg5.cloudfront.net/media/elearning/topic/Custom_Size__4.jpg"
-                                    alt=""
-                                />
-                            </ImgContainer>
-                            <Title>Devices</Title>
-                            <Time>5 min, 17 secs</Time>
-                        </Card>
-                        <Card>
-                            <ImgContainer>
-                                <img
-                                    src="https://d3mbaugvr53zg5.cloudfront.net/media/elearning/topic/Custom_Size__4.jpg"
-                                    alt=""
-                                />
-                            </ImgContainer>
-                            <Title>Devices</Title>
-                            <Time>5 min, 17 secs</Time>
-                        </Card>
-                        <Card>
-                            <ImgContainer>
-                                <img
-                                    src="https://d3mbaugvr53zg5.cloudfront.net/media/elearning/topic/Custom_Size__4.jpg"
-                                    alt=""
-                                />
-                            </ImgContainer>
-                            <Title>Devices</Title>
-                            <Time>5 min, 17 secs</Time>
-                        </Card>
-                        <Card>
-                            <ImgContainer>
-                                <img
-                                    src="https://d3mbaugvr53zg5.cloudfront.net/media/elearning/topic/Custom_Size__4.jpg"
-                                    alt=""
-                                />
-                            </ImgContainer>
-                            <Title>Devices</Title>
-                            <Time>5 min, 17 secs</Time>
-                        </Card>
-                    </Cards>
-                </Item>
-                <Item>
-                    <Heading>Devices</Heading>
-                    <Cards>
-                        <Card>
-                            <ImgContainer>
-                                <img
-                                    src="https://d3mbaugvr53zg5.cloudfront.net/media/elearning/topic/Custom_Size__4.jpg"
-                                    alt=""
-                                />
-                            </ImgContainer>
-                            <Title>Devices</Title>
-                            <Time>5 min, 17 secs</Time>
-                        </Card>
-                        <Card>
-                            <ImgContainer>
-                                <img
-                                    src="https://d3mbaugvr53zg5.cloudfront.net/media/elearning/topic/Custom_Size__4.jpg"
-                                    alt=""
-                                />
-                            </ImgContainer>
-                            <Title>Devices</Title>
-                            <Time>5 min, 17 secs</Time>
-                        </Card>
-                    </Cards>
-                </Item>
-                <Item>
-                    <Heading>Devices</Heading>
-                    <Cards>
-                        <Card>
-                            <ImgContainer>
-                                <img
-                                    src="https://d3mbaugvr53zg5.cloudfront.net/media/elearning/topic/Custom_Size__4.jpg"
-                                    alt=""
-                                />
-                            </ImgContainer>
-                            <Title>Devices</Title>
-                            <Time>5 min, 17 secs</Time>
-                        </Card>
-                        <Card>
-                            <ImgContainer>
-                                <img
-                                    src="https://d3mbaugvr53zg5.cloudfront.net/media/elearning/topic/Custom_Size__4.jpg"
-                                    alt=""
-                                />
-                            </ImgContainer>
-                            <Title>Devices</Title>
-                            <Time>5 min, 17 secs</Time>
-                        </Card>
-                        <Card>
-                            <ImgContainer>
-                                <img
-                                    src="https://d3mbaugvr53zg5.cloudfront.net/media/elearning/topic/Custom_Size__4.jpg"
-                                    alt=""
-                                />
-                            </ImgContainer>
-                            <Title>Devices</Title>
-                            <Time>5 min, 17 secs</Time>
-                        </Card>
-                        <Card>
-                            <ImgContainer>
-                                <img
-                                    src="https://d3mbaugvr53zg5.cloudfront.net/media/elearning/topic/Custom_Size__4.jpg"
-                                    alt=""
-                                />
-                            </ImgContainer>
-                            <Title>Devices</Title>
-                            <Time>5 min, 17 secs</Time>
-                        </Card>
-                        <Card>
-                            <ImgContainer>
-                                <img
-                                    src="https://d3mbaugvr53zg5.cloudfront.net/media/elearning/topic/install_sublime_on_mac_os.jpg"
-                                    alt=""
-                                />
-                            </ImgContainer>
-                            <Title>Devices</Title>
-                            <Time>5 min, 17 secs</Time>
-                        </Card>
-                        <Card>
-                            <ImgContainer>
-                                <img
-                                    src="https://d3mbaugvr53zg5.cloudfront.net/media/elearning/topic/install_sublime_on_mac_os.jpg"
-                                    alt=""
-                                />
-                            </ImgContainer>
-                            <Title>Devices</Title>
-                            <Time>5 min, 17 secs</Time>
-                        </Card>
-                        <Card>
-                            <ImgContainer>
-                                <img
-                                    src="https://d3mbaugvr53zg5.cloudfront.net/media/elearning/topic/install_sublime_on_mac_os.jpg"
-                                    alt=""
-                                />
-                            </ImgContainer>
-                            <Title>Devices</Title>
-                            <Time>5 min, 17 secs</Time>
-                        </Card>
-                        <Card>
-                            <ImgContainer>
-                                <img
-                                    src="https://d3mbaugvr53zg5.cloudfront.net/media/elearning/topic/install_sublime_on_mac_os.jpg"
-                                    alt=""
-                                />
-                            </ImgContainer>
-                            <Title>Devices</Title>
-                            <Time>5 min, 17 secs</Time>
-                        </Card>
-                        <Card>
-                            <ImgContainer>
-                                <img
-                                    src="https://d3mbaugvr53zg5.cloudfront.net/media/elearning/topic/install_sublime_on_mac_os.jpg"
-                                    alt=""
-                                />
-                            </ImgContainer>
-                            <Title>Devices</Title>
-                            <Time>5 min, 17 secs</Time>
-                        </Card>
-                        <Card>
-                            <ImgContainer>
-                                <img
-                                    src="https://d3mbaugvr53zg5.cloudfront.net/media/elearning/topic/install_sublime_on_mac_os.jpg"
-                                    alt=""
-                                />
-                            </ImgContainer>
-                            <Title>Devices</Title>
-                            <Time>5 min, 17 secs</Time>
-                        </Card>
-                        <Card>
-                            <ImgContainer>
-                                <img
-                                    src="https://d3mbaugvr53zg5.cloudfront.net/media/elearning/topic/install_sublime_on_mac_os.jpg"
-                                    alt=""
-                                />
-                            </ImgContainer>
-                            <Title>Devices</Title>
-                            <Time>5 min, 17 secs</Time>
-                        </Card>
-                        <Card>
-                            <ImgContainer>
-                                <img
-                                    src="https://d3mbaugvr53zg5.cloudfront.net/media/elearning/topic/install_sublime_on_mac_os.jpg"
-                                    alt=""
-                                />
-                            </ImgContainer>
-                            <Title>Devices</Title>
-                            <Time>5 min, 17 secs</Time>
-                        </Card>
-                        <Card>
-                            <ImgContainer>
-                                <img
-                                    src="https://d3mbaugvr53zg5.cloudfront.net/media/elearning/topic/install_sublime_on_mac_os.jpg"
-                                    alt=""
-                                />
-                            </ImgContainer>
-                            <Title>Devices</Title>
-                            <Time>5 min, 17 secs</Time>
-                        </Card>
-                        <Card>
-                            <ImgContainer>
-                                <img
-                                    src="https://d3mbaugvr53zg5.cloudfront.net/media/elearning/topic/install_sublime_on_mac_os.jpg"
-                                    alt=""
-                                />
-                            </ImgContainer>
-                            <Title>Devices</Title>
-                            <Time>5 min, 17 secs</Time>
-                        </Card>
-                        <Card>
-                            <ImgContainer>
-                                <img
-                                    src="https://d3mbaugvr53zg5.cloudfront.net/media/elearning/topic/install_sublime_on_mac_os.jpg"
-                                    alt=""
-                                />
-                            </ImgContainer>
-                            <Title>Devices</Title>
-                            <Time>5 min, 17 secs</Time>
-                        </Card>
-                        <Card>
-                            <ImgContainer>
-                                <img
-                                    src="https://d3mbaugvr53zg5.cloudfront.net/media/elearning/topic/install_sublime_on_mac_os.jpg"
-                                    alt=""
-                                />
-                            </ImgContainer>
-                            <Title>Devices</Title>
-                            <Time>5 min, 17 secs</Time>
-                        </Card>
-                    </Cards>
-                </Item>
+                {lessons.map((lesson) => (
+                    <Item>
+                        <Heading>{lesson.name}</Heading>
+                        <Cards>
+                            {lesson.topics.map((topic) => (
+                                <Card>
+                                    <ImgContainer>
+                                        <img src={topic.image} alt="" />
+                                    </ImgContainer>
+                                    <Title>{topic.name}</Title>
+                                    <Time>{topic.duration}</Time>
+                                </Card>
+                            ))}
+                        </Cards>
+                    </Item>
+                ))}
             </BottomContainer>
         </Container>
     );
@@ -267,14 +76,16 @@ function FreeGround() {
 export default FreeGround;
 const Container = styled.div`
     height: 90vh;
-    overflow-y: scroll;
     margin-top: 61px;
     padding: 10px 20px 0 83px;
     display: flex;
     -webkit-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column;
-    width: 94%;
+    width: 93%;
+    ::-webkit-scrollbar {
+        display: none;
+    }
 `;
 const Top = styled.div`
     display: flex;
@@ -326,10 +137,9 @@ const Heading = styled.h5`
     font-family: gordita_medium;
     font-size: 18px;
     color: rgb(115, 115, 115);
+    margin-bottom: 20px;
 `;
 const Card = styled.div`
-    width: 24%;
-    margin-right: 12px;
     margin-bottom: 30px;
     &:nth-child(4) {
         margin-right: 0;
@@ -339,13 +149,12 @@ const Card = styled.div`
     }
 `;
 const Cards = styled.div`
-    display: flex;
-    justify-content: flex-start;
-    margin-top: 20px;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 24px;
 `;
 const ImgContainer = styled.div`
-    width: 290px;
+    width: 320px;
     img {
         display: block;
         width: 100%;
@@ -362,4 +171,5 @@ const Time = styled.p`
     margin-top: 2px;
     font-family: gordita_regular;
     font-size: 13px;
+    width: 100px;
 `;

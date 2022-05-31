@@ -11,24 +11,27 @@ function Assessments() {
     let access_token = "ZgFHzMlH6fij7lh8J6B8pHeaBtzoMA";
 
     useEffect(() => {
-        practiceConfig
-            .get("assessments/completed-assessments/tech-schooling/", {
-                headers: {
-                    authorization: `Bearer ${access_token}`,
-                },
-            })
-            .then((res) => {
-                const { StatusCode, data } = res.data;
-                if (StatusCode === 6000) {
-                    setCompleted(data);
-                    setThree(completed.slice(0, 3));
-                } else if (StatusCode === 6001) {
-                    console.log("6001");
-                }
-            })
-            .catch((err) => {
-                console.log(err);
-            });
+        const fetchCompletedAssessments = () => {
+            practiceConfig
+                .get("assessments/completed-assessments/tech-schooling/", {
+                    headers: {
+                        authorization: `Bearer ${access_token}`,
+                    },
+                })
+                .then((res) => {
+                    const { StatusCode, data } = res.data;
+                    if (StatusCode === 6000) {
+                        setCompleted(data);
+                        setThree(completed.slice(0, 3));
+                    } else if (StatusCode === 6001) {
+                        console.log("6001");
+                    }
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        };
+        fetchCompletedAssessments();
     }, []);
 
     return (
@@ -47,7 +50,7 @@ function Assessments() {
                         Currently, you have no assessments to attend. Please go
                         to your next activity to unlock more assessments.
                     </Description>
-                    <Button to="/">Go to Learn dashboard</Button>
+                    <Button to="/tech-schooling">Go to Learn dashboard</Button>
                 </TopContainer>
                 <BottomContainer>
                     <h3>Upcoming Assessments</h3>
@@ -70,7 +73,9 @@ function Assessments() {
                     <Header>
                         <Top>
                             <h3>Attended Assessments</h3>
-                            <ButtonDiv>View All</ButtonDiv>
+                            <ButtonDiv to="completed-assessments/">
+                                View All
+                            </ButtonDiv>
                         </Top>
                         {three.map((item) => (
                             <Card>
@@ -103,11 +108,11 @@ export default Assessments;
 const Container = styled.div`
     display: flex;
     justify-content: space-between;
-    width: 80%;
-    margin-left: 270px;
+    width: 93%;
+    margin: 0 20px 20px 76px;
 `;
 const Left = styled.div`
-    width: 40%;
+    width: 44%;
     display: flex;
     flex-direction: column;
 `;
@@ -225,7 +230,7 @@ const Top = styled.div`
         margin-bottom: 15px;
     }
 `;
-const ButtonDiv = styled.div`
+const ButtonDiv = styled(Link)`
     color: rgb(33, 150, 243);
     font-family: gordita_medium;
     font-size: 14px;

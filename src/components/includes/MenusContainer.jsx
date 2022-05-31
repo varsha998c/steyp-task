@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, Outlet, Route, Routes } from "react-router-dom";
+import { Link, NavLink, Outlet, Route, Routes } from "react-router-dom";
 import styled from "styled-components";
 import Main from "../general/Main";
 import Assessments from "../screens/Assessments";
@@ -17,13 +17,45 @@ const MenusContainer = () => {
                 <h2>Tech Schooling</h2>
                 <Div>
                     <Ul>
-                        <Li to="/">Dashboard</Li>
-                        <Li to="/learning">Learning</Li>
-                        <Li to="/practice">Practices</Li>
-                        <Li to="/workshop">Workshops</Li>
-                        <Li to="/assessments">Assessments</Li>
-                        <Li to="/new_content">New Content</Li>
-                        <Li to="/certificate">Certification</Li>
+                        <Li activeclassName="active" to="/tech-schooling">
+                            Dashboard
+                        </Li>
+                        <Li
+                            activeclassName="active"
+                            to="/tech-schooling/professions"
+                        >
+                            Learning
+                        </Li>
+                        <Li
+                            activeclassName="active"
+                            to="/tech-schooling/practices/"
+                        >
+                            Practices
+                        </Li>
+                        <Li
+                            activeclassName="active"
+                            to="/tech-schooling/workshops"
+                        >
+                            Workshops
+                        </Li>
+                        <Li
+                            activeclassName="active"
+                            to="/tech-schooling/assessments"
+                        >
+                            Assessments
+                        </Li>
+                        <Li
+                            activeclassName="active"
+                            to="/tech-schooling/new_content"
+                        >
+                            New Content
+                        </Li>
+                        <Li
+                            activeclassName="active"
+                            to="/tech-schooling/certificate"
+                        >
+                            Certification
+                        </Li>
                     </Ul>
                 </Div>
             </Cover>
@@ -50,7 +82,7 @@ const Ul = styled.div`
     align-items: center;
     margin: 0px 20px;
 `;
-const Li = styled(Link)`
+const Li = styled(NavLink)`
     min-width: fit-content;
     display: inline-block;
     color: rgb(113, 113, 113);
@@ -58,17 +90,17 @@ const Li = styled(Link)`
     margin-right: 55px;
     cursor: pointer;
     font-family: "gordita_regular";
-    &:hover {
-        color: rgb(95, 209, 138);
-    }
     &:last-child {
         margin-right: 0;
+    }
+    &.active {
+        color: rgb(95, 209, 138);
     }
 `;
 const Cover = styled.div`
     margin-top: 80px;
-    margin-left: 265px;
-    width: 81%;
+    margin-left: 76px;
+    width: 93%;
     padding: 20px 0;
     h2 {
         text-transform: capitalize;

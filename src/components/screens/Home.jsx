@@ -23,7 +23,7 @@ function Home({ setDash }) {
                     </Img>
                 </Top>
                 <Bottom>
-                    <Div onClick={() => navigate("dashboard")}>
+                    <Div onClick={() => navigate("tech-schooling")}>
                         <h3>Subjects</h3>
                         <Item>
                             <Items>
@@ -69,7 +69,7 @@ const Container = styled.div`
     height: 90vh;
     overflow-y: scroll;
     margin-top: 61px;
-    margin-left: 238px;
+    margin-left: 76px;
     padding: 10px 0 0 20px;
 `;
 const Top = styled.div`
