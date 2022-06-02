@@ -3,10 +3,14 @@ import styled from "styled-components";
 import { IoLayersOutline } from "react-icons/io5";
 import { AiOutlineClockCircle } from "react-icons/ai";
 import { practiceConfig } from "../../axiosConfig";
+import { css } from "@emotion/react";
+import HashLoader from "react-spinners/HashLoader";
 
 function NewContent() {
     let access_token = "ZgFHzMlH6fij7lh8J6B8pHeaBtzoMA";
     const [item, setItem] = useState([]);
+    let [color, setColor] = useState("green");
+    const [loader, setLoader] = useState(false);
 
     useEffect(() => {
         practiceConfig
@@ -19,6 +23,7 @@ function NewContent() {
                 const { StatusCode, data } = res.data;
                 if (StatusCode === 6000) {
                     setItem(data);
+                    setLoader(true);
                 } else if (StatusCode === 6001) {
                     console.log("6001");
                 }
@@ -57,11 +62,25 @@ function NewContent() {
                     </Item>
                 ))}
             </Items>
+            {loader ? (
+                loader
+            ) : (
+                <HashLoader color={color} css={override} size={100} />
+            )}
         </Content>
     );
 }
 
 export default NewContent;
+const override = css`
+    display: block;
+    margin: 0 auto;
+    border-color: green;
+    position: absolute;
+    right: 0;
+    left: 0;
+    top: 60%;
+`;
 const Content = styled.div`
     width: 93%;
     margin: 0 20px 20px 76px;

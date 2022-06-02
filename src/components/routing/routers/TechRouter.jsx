@@ -18,6 +18,7 @@ import Home from "../../screens/Home";
 import NewContent from "../../screens/NewContent";
 import Practice from "../../screens/Practice";
 import Workshop from "../../screens/Workshop";
+import LearningSpotlight from "../../includes/learning/LearningSpotlight";
 
 function TechRouter() {
     console.log("++++++++++++++++++++++++++++");
@@ -26,10 +27,10 @@ function TechRouter() {
         <>
             <MenusContainer />
             <Routes>
-                {/* <Route path="/" element={<MenusContainer />} /> */}
-
                 <Route path="/" element={<Tech />} />
                 <Route path="professions/" element={<Learning />} />
+                <Route path="profession/:id" element={<LearningSpotlight />} />
+
                 <Route path="practices/" element={<Practice />} />
                 <Route
                     path="practices/completed-practices/"

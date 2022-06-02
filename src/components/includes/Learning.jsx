@@ -2,24 +2,16 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { IoLayersOutline } from "react-icons/io5";
 import { AiOutlineClockCircle } from "react-icons/ai";
-import axios from "axios";
 import { practiceConfig } from "../../axiosConfig";
-import Backdrop from "@material-ui/core/Backdrop";
-import CircularProgress from "@material-ui/core/CircularProgress";
-import Button from "@material-ui/core/Button";
-import { makeStyles } from "@material-ui/core/styles";
-const useStyles = makeStyles((theme) => ({
-    backdrop: {
-        zIndex: theme.zIndex.drawer + 1,
-        color: "#fff",
-    },
-}));
+import { css } from "@emotion/react";
+import HashLoader from "react-spinners/HashLoader";
+import { Link } from "react-router-dom";
 
 function Learning() {
+    let [color, setColor] = useState("green");
+    const [loader, setLoader] = useState(false);
     let access_token = "ZgFHzMlH6fij7lh8J6B8pHeaBtzoMA";
     const [item, setItem] = useState([]);
-    const [loader, setLoader] = useState(false);
-    const classes = useStyles();
 
     useEffect(() => {
         const fetchTechSchooling = () => {
@@ -38,6 +30,7 @@ function Learning() {
                     if (res.data.StatusCode === 6000) {
                         setItem(res.data.data);
                         setLoader(true);
+                        console.log(res, "============================");
                     } else if (res.data.StatusCode === 6001) {
                         console.log("6001");
                     }
@@ -57,6 +50,7 @@ function Learning() {
                 <Items>
                     {item.map((items) => (
                         <Item
+                            to={`professions/${items.id}`}
                             className={
                                 items.status === "completed"
                                     ? "completed"
@@ -115,9 +109,7 @@ function Learning() {
             {loader ? (
                 loader
             ) : (
-                <Backdrop className={classes.backdrop} open>
-                    <CircularProgress color="inherit" />
-                </Backdrop>
+                <HashLoader color={color} css={override} size={100} />
             )}
         </Container>
     );
@@ -134,7 +126,15 @@ const Container = styled.div`
         font-family: "gordita_regular";
     }
 `;
-
+const override = css`
+    display: block;
+    margin: 0 auto;
+    border-color: green;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+`;
 const Content = styled.div`
     width: 95%;
     margin-left: 76px;
@@ -145,7 +145,7 @@ const Items = styled.div`
     width: 98%;
     justify-content: space-between;
 `;
-const Item = styled.div`
+const Item = styled(Link)`
     width: 46%;
     background: rgb(249, 249, 249);
     padding: 25px 20px;

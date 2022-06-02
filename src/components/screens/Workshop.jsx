@@ -4,8 +4,12 @@ import { IoLayersOutline } from "react-icons/io5";
 import { AiOutlinePlayCircle } from "react-icons/ai";
 import { learnConfig, practiceConfig } from "../../axiosConfig";
 import { Link } from "react-router-dom";
+import { css } from "@emotion/react";
+import HashLoader from "react-spinners/HashLoader";
 
 function Workshop() {
+    let [color, setColor] = useState("green");
+    const [loader, setLoader] = useState(false);
     const [item, setItem] = useState([]);
     const [isData, setData] = useState([]);
     const [three, setThree] = useState([]);
@@ -24,6 +28,7 @@ function Workshop() {
                     if (StatusCode === 6000) {
                         setItem(data);
                         setThree(item.slice(0, 3));
+                        setLoader(true);
                     } else if (StatusCode === 6001) {
                         console.log("6001");
                     }
@@ -144,6 +149,15 @@ function Workshop() {
                                 </Right>
                             </Card>
                         ))}
+                        {loader ? (
+                            loader
+                        ) : (
+                            <HashLoader
+                                color={color}
+                                css={override}
+                                size={100}
+                            />
+                        )}
                     </Header>
                 </ContentContainer>
             </Right>
@@ -152,6 +166,15 @@ function Workshop() {
 }
 
 export default Workshop;
+const override = css`
+    display: block;
+    margin: 0 auto;
+    border-color: green;
+    position: absolute;
+    right: 0;
+    left: 50%;
+    top: 60%;
+`;
 const Container = styled.div`
     display: flex;
     justify-content: space-between;

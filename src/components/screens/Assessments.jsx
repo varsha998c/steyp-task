@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { IoLayersOutline } from "react-icons/io5";
 import { practiceConfig } from "../../axiosConfig";
 import { Link } from "react-router-dom";
+import { css } from "@emotion/react";
+import HashLoader from "react-spinners/HashLoader";
 
 function Assessments() {
     const [completed, setCompleted] = useState([]);
     const [three, setThree] = useState([]);
-
+    let [color, setColor] = useState("green");
+    const [loader, setLoader] = useState(false);
     let access_token = "ZgFHzMlH6fij7lh8J6B8pHeaBtzoMA";
 
     useEffect(() => {
@@ -23,6 +25,7 @@ function Assessments() {
                     if (StatusCode === 6000) {
                         setCompleted(data);
                         setThree(completed.slice(0, 3));
+                        setLoader(true);
                     } else if (StatusCode === 6001) {
                         console.log("6001");
                     }
@@ -100,11 +103,25 @@ function Assessments() {
                     </Header>
                 </ContentContainer>
             </Right>
+            {loader ? (
+                loader
+            ) : (
+                <HashLoader color={color} css={override} size={100} />
+            )}
         </Container>
     );
 }
 
 export default Assessments;
+const override = css`
+    display: block;
+    margin: 0 auto;
+    border-color: green;
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    right: 0;
+`;
 const Container = styled.div`
     display: flex;
     justify-content: space-between;

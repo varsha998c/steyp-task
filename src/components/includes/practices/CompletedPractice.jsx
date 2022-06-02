@@ -1,10 +1,15 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { practiceConfig } from "../../../axiosConfig";
+import { css } from "@emotion/react";
+import HashLoader from "react-spinners/HashLoader";
 
 function CompletedPractice() {
     let access_token = "CZXfKimWIMmsWGFoZilJ4Z85Mna5yk";
     const [items, setitems] = useState([]);
+    let [color, setColor] = useState("green");
+    const [loader, setLoader] = useState(false);
+
     useEffect(() => {
         const fetchCompletedPractices = () => {
             practiceConfig
@@ -18,6 +23,7 @@ function CompletedPractice() {
                     const { StatusCode, data } = res.data;
                     if (StatusCode === 6000) {
                         setitems(data);
+                        setLoader(true);
                     } else if (StatusCode === 6001) {
                         console.log("6001");
                     }
@@ -212,11 +218,25 @@ function CompletedPractice() {
                         ))}
                 </Content>
             </Section>
+            {loader ? (
+                loader
+            ) : (
+                <HashLoader color={color} css={override} size={100} />
+            )}
         </Container>
     );
 }
 
 export default CompletedPractice;
+const override = css`
+    display: block;
+    margin: 0 auto;
+    border-color: green;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+`;
 const Container = styled.div`
     display: flex;
     flex-direction: column;
@@ -282,13 +302,16 @@ const Right = styled.div`
     }
 `;
 const Mark = styled.div`
+    width: 80px;
     background-color: rgb(219, 201, 0);
     border-radius: 30px;
-    padding: 4px 25px;
+    padding: 4px 5px;
     position: absolute;
     top: 27px;
     color: #fff;
-    left: 98px;
+    left: 110px;
+    display: flex;
+    justify-content: center;
     img {
         margin-right: 2px;
     }

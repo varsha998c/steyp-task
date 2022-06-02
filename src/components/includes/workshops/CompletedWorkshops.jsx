@@ -3,10 +3,14 @@ import styled from "styled-components";
 import { practiceConfig } from "../../../axiosConfig";
 import { IoLayersOutline } from "react-icons/io5";
 import { AiOutlinePlayCircle } from "react-icons/ai";
+import { css } from "@emotion/react";
+import HashLoader from "react-spinners/HashLoader";
 
 function CompletedWorkshops() {
     const [items, setitems] = useState([]);
     let access_token = "CZXfKimWIMmsWGFoZilJ4Z85Mna5yk";
+    const [loader, setLoader] = useState(false);
+    let [color, setColor] = useState("green");
 
     useEffect(() => {
         const fetchCompletedWorkshops = () => {
@@ -21,6 +25,7 @@ function CompletedWorkshops() {
                     const { StatusCode, data } = res.data;
                     if (StatusCode === 6000) {
                         setitems(data);
+                        setLoader(true);
                     } else if (StatusCode === 6001) {
                         console.log("6001");
                     }
@@ -70,11 +75,62 @@ function CompletedWorkshops() {
                         ))}
                 </Content>
             </Section>
+            <Section>
+                <h3>Workshops done in Cascading Style Sheets</h3>
+                <Content>
+                    {items
+                        .filter((prod) =>
+                            prod.skill.includes("Cascading Style Sheets")
+                        )
+                        .map((item) => (
+                            <Card>
+                                <Left>
+                                    <img src={item.image} alt="image" />
+                                </Left>
+                                <Right>
+                                    <Top>
+                                        <span>#{item.auto_id}</span>
+                                        <h4>{item.title}</h4>
+                                    </Top>
+
+                                    <Developer>
+                                        <Icon>
+                                            <IoLayersOutline />
+                                            <h6>Backend Developer</h6>
+                                        </Icon>
+                                        <Icon>
+                                            <AiOutlinePlayCircle />
+                                            <h6>1 Topic</h6>
+                                        </Icon>
+                                        <Icon>
+                                            <AiOutlinePlayCircle />
+                                            <h6>4 mins</h6>
+                                        </Icon>
+                                    </Developer>
+                                </Right>
+                            </Card>
+                        ))}
+                </Content>
+            </Section>
+            {loader ? (
+                loader
+            ) : (
+                <HashLoader color={color} css={override} size={100} />
+            )}
         </Container>
     );
 }
 
 export default CompletedWorkshops;
+const override = css`
+    display: block;
+    margin: 0 auto;
+    border-color: green;
+    position: absolute;
+    right: 0;
+    left: 0;
+    top: 50%;
+`;
 const Container = styled.div`
     display: flex;
     flex-direction: column;

@@ -46,7 +46,7 @@ const MenusContainer = () => {
                         </Li>
                         <Li
                             activeclassName="active"
-                            to="/tech-schooling/new_content"
+                            to="/tech-schooling/new-content"
                         >
                             New Content
                         </Li>

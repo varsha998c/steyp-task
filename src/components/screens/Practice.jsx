@@ -3,12 +3,18 @@ import styled from "styled-components";
 import { IoLayersOutline } from "react-icons/io5";
 import { practiceConfig } from "../../axiosConfig";
 import { Link } from "react-router-dom";
+import { makeStyles } from "@material-ui/core/styles";
+import { css } from "@emotion/react";
+import HashLoader from "react-spinners/HashLoader";
 
 function Practice() {
+    const [loader, setLoader] = useState(false);
     const [card, setCard] = useState([]);
     const [item, setItem] = useState([]);
     const [currentPractice, setCurrentPracice] = useState([]);
     const [three, setThree] = useState([]);
+    let [color, setColor] = useState("green");
+
     // const [isView, setView] = useState(false);
     let access_token = "CZXfKimWIMmsWGFoZilJ4Z85Mna5yk";
     console.log("###############################", three);
@@ -77,6 +83,7 @@ function Practice() {
                     const { StatusCode, data } = res.data;
                     if (StatusCode === 6000) {
                         setItem(data);
+                        setLoader(true);
                         console.log(
                             item,
                             "=============================items========================"
@@ -176,11 +183,25 @@ function Practice() {
                     </Header>
                 </ContentContainer>
             </Right>
+            {loader ? (
+                loader
+            ) : (
+                <HashLoader color={color} css={override} size={100} />
+            )}
         </Container>
     );
 }
 
 export default Practice;
+const override = css`
+    display: block;
+    margin: 0 auto;
+    border-color: green;
+    position: absolute;
+    right: 0;
+    left: 50%;
+    top: 60%;
+`;
 const Container = styled.div`
     display: flex;
     justify-content: space-between;
