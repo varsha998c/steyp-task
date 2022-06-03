@@ -6,6 +6,7 @@ import { practiceConfig } from "../../axiosConfig";
 import { css } from "@emotion/react";
 import HashLoader from "react-spinners/HashLoader";
 import { Link } from "react-router-dom";
+import LearningHome from "./learning/LearningHome";
 
 function Learning() {
     let [color, setColor] = useState("green");
@@ -50,7 +51,7 @@ function Learning() {
                 <Items>
                     {item.map((items) => (
                         <Item
-                            to={`professions/${items.id}`}
+                            to={`/tech-schooling/skills/${items.id}/`}
                             className={
                                 items.status === "completed"
                                     ? "completed"
@@ -111,6 +112,7 @@ function Learning() {
             ) : (
                 <HashLoader color={color} css={override} size={100} />
             )}
+            {/* <LearningHome /> */}
         </Container>
     );
 }
@@ -237,6 +239,7 @@ const ImgContainer = styled.div`
     margin-right: 10px;
     font-family: gordita_regular;
     font-size: 18px;
+    color: rgb(76, 175, 80);
     img {
         display: block;
         width: 100%;

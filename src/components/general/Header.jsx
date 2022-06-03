@@ -50,7 +50,9 @@ function Header({ setClick }) {
                             <Profile>
                                 <Avatar name="Varsha" size="60" />
                             </Profile>
-                            <h4>Varsha</h4>
+                            <h4 onClick={() => setClick((prev) => !prev)}>
+                                Varsha
+                            </h4>
                             <DropDown onClick={() => setClick((prev) => !prev)}>
                                 <Img
                                     src="https://s3.ap-south-1.amazonaws.com/talrop.com-react-assets-bucket/assets/images/polygon.svg"

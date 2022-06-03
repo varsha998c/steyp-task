@@ -8,7 +8,7 @@ function SideBar() {
         <Section>
             <Wrapper>
                 <Content className="one">
-                    <TopContainer>
+                    <TopContainer activeclassName="active">
                         <ImgContainer>
                             <img
                                 src="https://s3.ap-south-1.amazonaws.com/talrop.com-react-assets-bucket/assets/images/menu/dashboard.svg"
@@ -18,7 +18,7 @@ function SideBar() {
                         <H4 to="/">Dashboard</H4>
                     </TopContainer>
                     <MiddleContainer>
-                        <One>
+                        <One activeclassName="active">
                             <ImgContainer>
                                 <img
                                     src="https://s3.ap-south-1.amazonaws.com/talrop.com-react-assets-bucket/assets/images/menu/free.svg"
@@ -27,7 +27,7 @@ function SideBar() {
                             </ImgContainer>
                             <H4 to="/free-ground">Free Ground</H4>
                         </One>
-                        <Two>
+                        <Two activeclassName="active">
                             <ImgContainer>
                                 <img
                                     src="https://s3.ap-south-1.amazonaws.com/talrop.com-react-assets-bucket/challenges/19-08-2021/challenge.svg"
@@ -36,7 +36,7 @@ function SideBar() {
                             </ImgContainer>
                             <H4 to="/challenges">Challeges</H4>
                         </Two>
-                        <Three>
+                        <Three activeclassName="active">
                             <ImgContainer>
                                 <img
                                     src="https://s3.ap-south-1.amazonaws.com/talrop.com-react-assets-bucket/assets/images/menu/talk.svg"
@@ -162,6 +162,11 @@ const TopContainer = styled.div`
     justify-content: flex-start;
     cursor: pointer;
     margin-bottom: 20px;
+    border-left: none;
+    &:hover {
+        background-color: #e1f6ff;
+        border-left: 5px solid rgb(95, 209, 138);
+    }
     h4 {
         margin-left: 20px;
         font-family: "gordita_medium";
@@ -206,6 +211,7 @@ const One = styled.div`
     cursor: pointer;
     padding: 10px 0px;
     margin-bottom: 15px;
+    border-left: none;
     h4 {
         margin-left: 20px;
         font-family: "gordita_medium";
@@ -214,6 +220,10 @@ const One = styled.div`
         &:hover {
             color: #5dc66a;
         }
+    }
+    &:hover {
+        background-color: #e1f6ff;
+        border-left: 5px solid rgb(95, 209, 138);
     }
 `;
 const Two = styled.div`

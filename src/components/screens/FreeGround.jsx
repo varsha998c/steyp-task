@@ -93,6 +93,7 @@ const Top = styled.div`
     align-items: center;
 `;
 const Left = styled.div`
+    margin-top: 20px;
     h2 {
         font-family: gordita_medium;
         font-size: 23px;

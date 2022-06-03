@@ -4,6 +4,7 @@ import { IoLayersOutline } from "react-icons/io5";
 import { FaStream } from "react-icons/fa";
 import { AiOutlinePlayCircle } from "react-icons/ai";
 import { AiOutlineClockCircle } from "react-icons/ai";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 function LearningSpotlight() {
     return (
@@ -53,8 +54,9 @@ function LearningSpotlight() {
                         alt="video"
                     />
                 </VideoContainer>
+
                 <span>
-                    <AiOutlinePlayCircle />
+                    <FontAwesomeIcon icon="fa-light fa-circle-play" />
                 </span>
             </Right>
         </Container>
@@ -62,21 +64,68 @@ function LearningSpotlight() {
 }
 
 export default LearningSpotlight;
-const Container = styled.div``;
+const Container = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 40px;
+`;
 const Left = styled.div`
+    width: 60%;
     h4 {
-        color: red;
+        font-size: 24px;
+        max-width: 500px;
+        font-family: "gordita_medium";
     }
 `;
-const Div = styled.div``;
-const Span = styled.span``;
-const ImgContainer = styled.div``;
-const Description = styled.p``;
+const Div = styled.div`
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: flex-start;
+`;
+const Span = styled.span`
+    font-size: 18px;
+    display: flex;
+    width: 150px;
+    align-items: center;
+    justify-content: flex-start;
+    margin-right: 20px;
+    color: rgb(176, 190, 197);
+`;
+const ImgContainer = styled.div`
+    margin-right: 10px;
+`;
+const Description = styled.p`
+    font-family: "gordita_regular";
+    font-size: 18px;
+    width: 93%;
+    color: rgb(73, 86, 92);
+    margin-bottom: 20px;
+`;
 const Right = styled.div`
+    width: 40%;
+    margin-bottom: 25px;
+
     span {
+        width: 100px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: inline-block;
     }
 `;
 const VideoContainer = styled.div`
+    width: 92%;
+    margin-left: 26px;
+    border-radius: 10px;
+    color: rgb(255, 255, 255);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+
     img {
+        width: 100%;
+        display: block;
     }
 `;

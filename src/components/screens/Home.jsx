@@ -68,8 +68,8 @@ export default Home;
 const Container = styled.div`
     height: 90vh;
     overflow-y: scroll;
-    margin-top: 61px;
-    margin-left: 76px;
+    margin-top: 80px;
+    margin-left: 55px;
     padding: 10px 0 0 20px;
 `;
 const Top = styled.div`
@@ -79,7 +79,7 @@ const Top = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 95%;
+    width: 96%;
 `;
 const Bottom = styled.div``;
 const One = styled.h3`
@@ -112,7 +112,7 @@ const Item = styled.div`
 const Items = styled.div`
     border-radius: 7px;
     padding: 40px 30px;
-    width: 250px;
+    width: 280px;
     height: 200px;
     background-color: rgb(236, 253, 237);
     position: relative;
