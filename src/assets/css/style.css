@@ -8,3 +8,44 @@ h3.performance {
 p.start {
     width: 100%;
 }
+div.coins {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    height: 110px;
+    margin-bottom: 35px;
+    background: url("https://s3.ap-south-1.amazonaws.com/talrop.com-react-assets-bucket/assets/images/my-coins/card1-bg1.svg")
+            right bottom no-repeat,
+        url("https://s3.ap-south-1.amazonaws.com/talrop.com-react-assets-bucket/assets/images/my-coins/card1-bg2.svg")
+            left top no-repeat rgb(221, 241, 252);
+    border-radius: 15px;
+    background-position: right bottom, left top;
+    background-repeat: no-repeat, no-repeat;
+}
+div.yellow {
+    background-color: rgb(254, 249, 212);
+    background-image: url("https://s3.ap-south-1.amazonaws.com/talrop.com-react-assets-bucket/assets/images/my-coins/card2-bg1.svg");
+    background-position: left bottom;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    height: 110px;
+    border-radius: 15px;
+    margin-bottom: 35px;
+}
+div.blue {
+    background-image: url("https://s3.ap-south-1.amazonaws.com/talrop.com-react-assets-bucket/assets/images/my-coins/card1-bg2.svg"), url("https://s3.ap-south-1.amazonaws.com/talrop.com-react-assets-bucket/assets/images/my-coins/asset.svg");
+    background-position: right bottom, left top;
+    background-repeat: no-repeat, no-repeat;
+    margin-bottom: 0px;
+    display: flex;
+    background-color: rgb(221, 241, 252);
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    height: 110px;
+    border-radius: 15px;
+}

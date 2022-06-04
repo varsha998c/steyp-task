@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import Avatar from "react-avatar";
-import { Outlet } from "react-router-dom";
+import Jdenticon from "react-jdenticon";
+import { Link, Outlet } from "react-router-dom";
 
 function Header({ setClick }) {
     return (
@@ -9,7 +9,7 @@ function Header({ setClick }) {
             <Container>
                 <Wrapper>
                     <Left>
-                        <LogoConatiner>
+                        <LogoContainer>
                             <Logo
                                 src={
                                     require("../../assets/images/steyp-logo.svg")
@@ -17,11 +17,11 @@ function Header({ setClick }) {
                                 }
                                 alt="logo"
                             />
-                        </LogoConatiner>
+                        </LogoContainer>
                     </Left>
                     <Right>
                         <CoinDiv>
-                            <CoinContainer>
+                            <CoinContainer to="/coin">
                                 <CoinImg>
                                     <Img
                                         src={
@@ -48,7 +48,11 @@ function Header({ setClick }) {
                         </CoinDiv>
                         <ProfileDiv>
                             <Profile>
-                                <Avatar name="Varsha" size="60" />
+                                <Jdenticon
+                                    height="40"
+                                    width="40"
+                                    value="Varsha"
+                                />
                             </Profile>
                             <h4 onClick={() => setClick((prev) => !prev)}>
                                 Varsha
@@ -99,7 +103,7 @@ const Right = styled.div`
     justify-content: flex-end;
     align-items: center;
 `;
-const LogoConatiner = styled.div`
+const LogoContainer = styled.div`
     width: 100px;
     display: flex;
     align-items: center;
@@ -113,7 +117,7 @@ const CoinDiv = styled.div`
     padding-right: 23px;
     border-right: 1px solid #000;
 `;
-const CoinContainer = styled.div`
+const CoinContainer = styled(Link)`
     display: flex;
     background: linear-gradient(
         90deg,
@@ -125,7 +129,6 @@ const CoinContainer = styled.div`
     border-radius: 26px 5px 5px 26px;
     margin-right: 30px;
     display: flex;
-    -webkit-box-align: center;
     align-items: center;
     color: rgb(51, 51, 51);
     cursor: pointer;

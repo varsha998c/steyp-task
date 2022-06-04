@@ -156,7 +156,7 @@ const Content = styled.div`
 `;
 const TopContainer = styled.div`
     border-bottom: 1px solid #efefef;
-    padding: 18px 20px;
+    padding: 18px 0px;
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -179,6 +179,7 @@ const TopContainer = styled.div`
 `;
 const ImgContainer = styled.div`
     width: 20px;
+    margin-left: 16px;
     img {
         display: block;
         width: 100%;
@@ -202,9 +203,10 @@ const H4 = styled(Link)`
 const MiddleContainer = styled.div`
     display: flex;
     flex-direction: column;
-    padding: 18px 20px;
+    padding: 18px 0px;
 `;
 const One = styled.div`
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -233,6 +235,11 @@ const Two = styled.div`
     cursor: pointer;
     padding: 10px 0px;
     margin-bottom: 15px;
+    border-left: none;
+    &:hover {
+        background-color: #e1f6ff;
+        border-left: 5px solid rgb(95, 209, 138);
+    }
 
     h4 {
         margin-left: 20px;
@@ -250,6 +257,7 @@ const Three = styled.div`
     justify-content: flex-start;
     cursor: pointer;
     padding: 10px 0px;
+    border-left: none;
     h4 {
         margin-left: 20px;
         font-family: "gordita_medium";
@@ -258,6 +266,10 @@ const Three = styled.div`
         &:hover {
             color: #5dc66a;
         }
+    }
+    &:hover {
+        background-color: #e1f6ff;
+        border-left: 5px solid rgb(95, 209, 138);
     }
 `;
 const BottomContainer = styled.div`
